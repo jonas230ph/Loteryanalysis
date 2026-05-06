@@ -1,0 +1,6 @@
+curl_cffi>=0.15.0
+beautifulsoup4>=4.12.0
+pandas>=2.2.0
+numpy>=1.26.0
+matplotlib>=3.8.0
+seaborn>=0.13.0

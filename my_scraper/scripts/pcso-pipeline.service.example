@@ -1,0 +1,20 @@
+[Unit]
+Description=PCSO scraper and analysis pipeline
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/pcso-lottery
+Environment=PROJECT_ROOT=/opt/pcso-lottery
+Environment=VENV_PATH=/opt/pcso-lottery/pcso_env
+Environment=SYNCHRONIZE_CMD=synchronize
+Environment=FILE_POLL_INTERVAL=2
+Environment=STABILITY_SECONDS=5
+Environment=WAIT_TIMEOUT=600
+ExecStart=/opt/pcso-lottery/scripts/auto_pipeline.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
