@@ -74,3 +74,980 @@
 2026-05-06 08:57:29,916 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
 2026-05-06 08:57:29,976 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.80s
 2026-05-06 08:57:29,976 INFO Pipeline completed successfully
+2026-05-06 09:15:21,933 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:15:21,933 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:15:21,933 INFO Acquired exclusive pipeline lock
+2026-05-06 09:15:21,933 INFO Starting synchronize: true
+2026-05-06 09:15:21,937 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:15:21,937 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:15:21,937 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:21,938 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:15:24,971 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:15:24,972 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:15:24,972 INFO scraper | Submitting search request...
+2026-05-06 09:15:24,972 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:15:24,990 INFO Finished scraper exit_code=0 duration=3.05s
+2026-05-06 09:15:24,990 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:15:33,011 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:15:33,011 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:15:33,979 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:15:33,979 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:15:33,979 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:15:33,979 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:15:33,979 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:15:33,979 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:15:33,979 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:15:33,979 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:15:33,979 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:34,043 INFO Finished analysis-default exit_code=0 duration=1.03s
+2026-05-06 09:15:34,043 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:15:34,781 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:34,840 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.80s
+2026-05-06 09:15:34,840 INFO Pipeline completed successfully
+2026-05-06 09:15:47,079 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:15:47,079 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:15:47,079 INFO Acquired exclusive pipeline lock
+2026-05-06 09:15:47,080 INFO Starting synchronize: true
+2026-05-06 09:15:47,083 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:15:47,084 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:15:47,084 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:47,085 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:15:49,802 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:15:49,802 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:15:49,802 INFO scraper | Submitting search request...
+2026-05-06 09:15:49,802 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:15:49,821 INFO Finished scraper exit_code=0 duration=2.74s
+2026-05-06 09:15:49,821 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:15:57,836 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:15:57,837 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:15:58,585 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:15:58,586 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:15:58,586 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:15:58,586 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:15:58,586 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:15:58,586 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:15:58,586 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:15:58,586 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:15:58,586 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:58,644 INFO Finished analysis-default exit_code=0 duration=0.81s
+2026-05-06 09:15:58,644 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:15:59,396 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:15:59,454 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.81s
+2026-05-06 09:15:59,454 INFO Pipeline completed successfully
+2026-05-06 09:18:37,019 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:18:37,019 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:18:37,019 INFO Acquired exclusive pipeline lock
+2026-05-06 09:18:37,019 INFO Starting synchronize: true
+2026-05-06 09:18:37,023 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:18:37,023 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:18:37,024 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:18:37,024 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:18:39,645 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:18:39,645 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:18:39,645 INFO scraper | Submitting search request...
+2026-05-06 09:18:39,645 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:18:39,664 INFO Finished scraper exit_code=0 duration=2.64s
+2026-05-06 09:18:39,664 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:18:47,683 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:18:47,684 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:18:48,649 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:18:48,649 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:18:48,649 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:18:48,649 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:18:48,649 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:18:48,649 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:18:48,649 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:18:48,649 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:18:48,649 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:18:48,711 INFO Finished analysis-default exit_code=0 duration=1.03s
+2026-05-06 09:18:48,711 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:18:49,454 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:18:49,454 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:18:49,454 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:18:49,454 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:18:49,454 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:18:49,455 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:18:49,455 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:18:49,455 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:18:49,455 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:18:49,526 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.81s
+2026-05-06 09:18:49,526 INFO Pipeline completed successfully
+2026-05-06 09:20:18,556 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:20:18,556 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:20:18,556 INFO Acquired exclusive pipeline lock
+2026-05-06 09:20:18,556 INFO Starting synchronize: true
+2026-05-06 09:20:18,559 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:20:18,559 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:20:18,559 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:20:18,560 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:20:21,081 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:20:21,081 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:20:21,081 INFO scraper | Submitting search request...
+2026-05-06 09:20:21,081 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:20:21,100 INFO Finished scraper exit_code=0 duration=2.54s
+2026-05-06 09:20:21,101 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:20:29,117 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:20:29,117 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:20:29,922 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:20:29,922 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:20:29,922 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:20:29,922 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:20:29,922 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:20:29,922 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:20:29,922 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:20:29,922 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:20:29,922 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:20:29,982 INFO Finished analysis-default exit_code=0 duration=0.86s
+2026-05-06 09:20:29,982 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:20:30,764 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:20:30,825 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.84s
+2026-05-06 09:20:30,825 INFO Pipeline completed successfully
+2026-05-06 09:43:41,633 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:43:41,634 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:43:41,634 INFO Acquired exclusive pipeline lock
+2026-05-06 09:43:41,634 INFO Starting synchronize: true
+2026-05-06 09:43:41,640 INFO Finished synchronize exit_code=0 duration=0.01s
+2026-05-06 09:43:41,640 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:43:41,641 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:43:41,642 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:43:44,228 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:43:44,228 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:43:44,228 INFO scraper | Submitting search request...
+2026-05-06 09:43:44,228 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:43:44,247 INFO Finished scraper exit_code=0 duration=2.60s
+2026-05-06 09:43:44,247 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:43:52,265 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:43:52,265 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:43:53,195 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:43:53,195 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:43:53,195 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:43:53,195 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:43:53,195 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:43:53,195 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:43:53,195 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:43:53,195 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:43:53,195 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:43:53,254 INFO Finished analysis-default exit_code=0 duration=0.99s
+2026-05-06 09:43:53,254 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:43:53,995 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:43:54,054 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.80s
+2026-05-06 09:43:54,054 INFO Pipeline completed successfully
+2026-05-06 09:48:56,659 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:48:56,660 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:48:56,660 INFO Acquired exclusive pipeline lock
+2026-05-06 09:48:56,660 INFO Starting synchronize: true
+2026-05-06 09:48:56,663 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:48:56,663 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:48:56,664 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:48:56,664 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:48:59,317 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:48:59,317 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:48:59,317 INFO scraper | Submitting search request...
+2026-05-06 09:48:59,317 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:48:59,336 INFO Finished scraper exit_code=0 duration=2.67s
+2026-05-06 09:48:59,337 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:49:07,355 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:49:07,356 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:49:08,278 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:49:08,278 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:49:08,278 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:49:08,278 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:49:08,278 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:49:08,278 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:49:08,278 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:49:08,278 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:49:08,278 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:49:08,336 INFO Finished analysis-default exit_code=0 duration=0.98s
+2026-05-06 09:49:08,336 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:49:09,072 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:49:09,072 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:49:09,073 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:49:09,130 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.79s
+2026-05-06 09:49:09,130 INFO Pipeline completed successfully
+2026-05-06 09:49:33,365 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:49:33,365 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:49:33,365 INFO Acquired exclusive pipeline lock
+2026-05-06 09:49:33,365 INFO Starting synchronize: true
+2026-05-06 09:49:33,368 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:49:33,369 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:49:33,369 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:49:33,369 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:49:35,960 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:49:35,961 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:49:35,961 INFO scraper | Submitting search request...
+2026-05-06 09:49:35,961 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:49:35,979 INFO Finished scraper exit_code=0 duration=2.61s
+2026-05-06 09:49:35,979 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:49:44,000 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:49:44,001 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:49:44,974 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:49:44,974 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:49:44,974 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:49:44,974 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:49:44,974 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:49:44,974 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:49:44,974 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:49:44,974 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:49:44,974 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:49:45,038 INFO Finished analysis-default exit_code=0 duration=1.04s
+2026-05-06 09:49:45,039 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:49:45,774 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:49:45,775 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:49:45,833 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.79s
+2026-05-06 09:49:45,833 INFO Pipeline completed successfully
+2026-05-06 09:50:43,126 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:50:43,126 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:50:43,126 INFO Acquired exclusive pipeline lock
+2026-05-06 09:50:43,126 INFO Starting synchronize: true
+2026-05-06 09:50:43,129 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:50:43,130 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:50:43,130 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:50:43,130 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:50:45,808 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:50:45,808 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:50:45,808 INFO scraper | Submitting search request...
+2026-05-06 09:50:45,808 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:50:45,826 INFO Finished scraper exit_code=0 duration=2.70s
+2026-05-06 09:50:45,826 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:50:53,846 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:50:53,847 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:50:54,832 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:50:54,832 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:50:54,832 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:50:54,832 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:50:54,832 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:50:54,832 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:50:54,832 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:50:54,832 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:50:54,832 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:50:54,900 INFO Finished analysis-default exit_code=0 duration=1.05s
+2026-05-06 09:50:54,901 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:50:55,650 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:50:55,717 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.82s
+2026-05-06 09:50:55,717 INFO Pipeline completed successfully
+2026-05-06 09:53:18,531 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:53:18,531 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:53:18,531 INFO Acquired exclusive pipeline lock
+2026-05-06 09:53:18,531 INFO Starting synchronize: true
+2026-05-06 09:53:18,534 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:53:18,534 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:53:18,535 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:53:18,536 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:53:21,081 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:53:21,081 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:53:21,081 INFO scraper | Submitting search request...
+2026-05-06 09:53:21,081 INFO scraper | Success! 1098 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:53:21,101 INFO Finished scraper exit_code=0 duration=2.56s
+2026-05-06 09:53:21,101 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:53:29,119 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=195224
+2026-05-06 09:53:29,119 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:53:30,101 INFO analysis-default | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:53:30,101 INFO analysis-default | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:53:30,101 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:53:30,101 INFO analysis-default | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:53:30,101 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:53:30,101 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:53:30,101 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:53:30,101 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:53:30,101 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:53:30,166 INFO Finished analysis-default exit_code=0 duration=1.05s
+2026-05-06 09:53:30,166 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Analyzed 1098 total draws across 13 games.
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (53 historical draws)
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (14 draws)
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Historical sum range: 102 to 294; median 186.0
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:53:30,919 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:53:30,978 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.81s
+2026-05-06 09:53:30,979 INFO Pipeline completed successfully
+2026-05-06 09:55:03,695 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:55:03,695 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:55:03,695 INFO Acquired exclusive pipeline lock
+2026-05-06 09:55:03,695 INFO Starting synchronize: true
+2026-05-06 09:55:03,699 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:55:03,699 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:55:03,699 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:55:03,699 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:55:03,723 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:55:03,723 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:55:03,723 INFO scraper |                                                        ^^^^
+2026-05-06 09:55:03,723 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:55:03,725 INFO Finished scraper exit_code=1 duration=0.03s
+2026-05-06 09:55:03,725 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:55:15,056 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:55:15,056 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:55:15,056 INFO Acquired exclusive pipeline lock
+2026-05-06 09:55:15,056 INFO Starting synchronize: true
+2026-05-06 09:55:15,060 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:55:15,060 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:55:15,060 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:55:15,060 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:55:15,083 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:55:15,083 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:55:15,083 INFO scraper |                                                        ^^^^
+2026-05-06 09:55:15,083 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:55:15,085 INFO Finished scraper exit_code=1 duration=0.03s
+2026-05-06 09:55:15,085 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:55:43,372 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:55:43,372 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:55:43,372 INFO Acquired exclusive pipeline lock
+2026-05-06 09:55:43,372 INFO Starting synchronize: true
+2026-05-06 09:55:43,376 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:55:43,376 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:55:43,376 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:55:43,376 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:55:43,399 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:55:43,399 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:55:43,399 INFO scraper |                                                        ^^^^
+2026-05-06 09:55:43,399 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:55:43,401 INFO Finished scraper exit_code=1 duration=0.02s
+2026-05-06 09:55:43,401 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:56:03,572 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:56:03,573 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:56:03,573 INFO Acquired exclusive pipeline lock
+2026-05-06 09:56:03,573 INFO Starting synchronize: true
+2026-05-06 09:56:03,576 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:56:03,576 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:56:03,576 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:56:03,576 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:56:03,602 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:56:03,602 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:56:03,602 INFO scraper |                                                        ^^^^
+2026-05-06 09:56:03,602 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:56:03,604 INFO Finished scraper exit_code=1 duration=0.03s
+2026-05-06 09:56:03,604 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:56:16,139 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:56:16,139 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:56:16,139 INFO Acquired exclusive pipeline lock
+2026-05-06 09:56:16,139 INFO Starting synchronize: true
+2026-05-06 09:56:16,143 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:56:16,143 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:56:16,143 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:56:16,143 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:56:16,183 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:56:16,183 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:56:16,183 INFO scraper |                                                        ^^^^
+2026-05-06 09:56:16,183 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:56:16,187 INFO Finished scraper exit_code=1 duration=0.04s
+2026-05-06 09:56:16,187 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:56:25,207 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:56:25,208 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:56:25,208 INFO Acquired exclusive pipeline lock
+2026-05-06 09:56:25,208 INFO Starting synchronize: true
+2026-05-06 09:56:25,212 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:56:25,212 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:56:25,212 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:56:25,212 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:56:25,235 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:56:25,235 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:56:25,235 INFO scraper |                                                        ^^^^
+2026-05-06 09:56:25,235 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:56:25,238 INFO Finished scraper exit_code=1 duration=0.03s
+2026-05-06 09:56:25,238 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:56:41,473 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:56:41,474 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:56:41,474 INFO Acquired exclusive pipeline lock
+2026-05-06 09:56:41,474 INFO Starting synchronize: true
+2026-05-06 09:56:41,477 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:56:41,477 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:56:41,477 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:56:41,477 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:56:41,500 INFO scraper |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_lottery_scraper.py", line 45
+2026-05-06 09:56:41,501 INFO scraper |     "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": 2024
+2026-05-06 09:56:41,501 INFO scraper |                                                        ^^^^
+2026-05-06 09:56:41,501 INFO scraper | SyntaxError: invalid syntax. Perhaps you forgot a comma?
+2026-05-06 09:56:41,503 INFO Finished scraper exit_code=1 duration=0.03s
+2026-05-06 09:56:41,503 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:58:03,186 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:58:03,187 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:58:03,187 INFO Acquired exclusive pipeline lock
+2026-05-06 09:58:03,187 INFO Starting synchronize: true
+2026-05-06 09:58:03,191 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:58:03,192 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:58:03,192 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:58:03,192 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:58:03,355 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:58:03,355 INFO scraper | Scrape failed: Failed to perform, curl: (6) Could not resolve host: www.pcso.gov.ph. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-05-06 09:58:03,355 INFO scraper | Hint: If this still fails, the site may be using JavaScript-based challenges (Cloudflare/Imperva).
+2026-05-06 09:58:03,367 INFO Finished scraper exit_code=1 duration=0.18s
+2026-05-06 09:58:03,368 ERROR Pipeline failed: scraper failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 88, in _run_locked
+    self.run_command("scraper", self.config.scraper_cmd, shell=True)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 190, in run_command
+    raise PipelineError(f"{label} failed with exit code {exit_code}")
+PipelineError: scraper failed with exit code 1
+2026-05-06 09:58:17,628 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:58:17,628 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:58:17,628 INFO Acquired exclusive pipeline lock
+2026-05-06 09:58:17,628 INFO Starting synchronize: true
+2026-05-06 09:58:17,633 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:58:17,633 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:58:17,633 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:58:17,633 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:58:21,477 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:58:21,477 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:58:21,477 INFO scraper | Submitting search request...
+2026-05-06 09:58:21,477 INFO scraper | Success! 7607 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:58:21,530 INFO Finished scraper exit_code=0 duration=3.90s
+2026-05-06 09:58:21,530 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:58:29,550 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=1354270
+2026-05-06 09:58:29,551 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:58:30,562 INFO analysis-default | Analyzed 7607 total draws across 13 games.
+2026-05-06 09:58:30,563 INFO analysis-default | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 09:58:30,563 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 09:58:30,563 INFO analysis-default | Historical sum range: 72 to 305; median 180.0
+2026-05-06 09:58:30,563 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:58:30,563 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:58:30,563 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:58:30,563 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:58:30,563 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:58:30,638 INFO Finished analysis-default exit_code=0 duration=1.09s
+2026-05-06 09:58:30,638 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Analyzed 7607 total draws across 13 games.
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Historical sum range: 72 to 305; median 180.0
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:58:31,434 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:58:31,497 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.86s
+2026-05-06 09:58:31,497 INFO Pipeline completed successfully
+2026-05-06 09:59:38,470 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 09:59:38,471 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 09:59:38,471 INFO Acquired exclusive pipeline lock
+2026-05-06 09:59:38,471 INFO Starting synchronize: true
+2026-05-06 09:59:38,474 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 09:59:38,475 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:59:38,475 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:59:38,475 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 09:59:41,727 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 09:59:41,727 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 09:59:41,727 INFO scraper | Submitting search request...
+2026-05-06 09:59:41,727 INFO scraper | Success! 7607 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 09:59:41,777 INFO Finished scraper exit_code=0 duration=3.30s
+2026-05-06 09:59:41,777 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 09:59:49,792 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=1354270
+2026-05-06 09:59:49,792 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 09:59:50,767 INFO analysis-default | Analyzed 7607 total draws across 13 games.
+2026-05-06 09:59:50,767 INFO analysis-default | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 09:59:50,767 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 09:59:50,767 INFO analysis-default | Historical sum range: 72 to 305; median 180.0
+2026-05-06 09:59:50,767 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:59:50,767 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:59:50,767 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 09:59:50,767 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 09:59:50,767 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:59:50,829 INFO Finished analysis-default exit_code=0 duration=1.04s
+2026-05-06 09:59:50,829 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Analyzed 7607 total draws across 13 games.
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Historical sum range: 72 to 305; median 180.0
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 09:59:51,575 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 09:59:51,633 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.80s
+2026-05-06 09:59:51,633 INFO Pipeline completed successfully
+2026-05-06 10:00:09,732 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:00:09,732 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:00:09,732 INFO Acquired exclusive pipeline lock
+2026-05-06 10:00:09,732 INFO Starting synchronize: true
+2026-05-06 10:00:09,741 INFO Finished synchronize exit_code=0 duration=0.01s
+2026-05-06 10:00:09,742 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:00:09,742 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:00:09,743 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:00:13,268 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:00:13,268 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:00:13,268 INFO scraper | Submitting search request...
+2026-05-06 10:00:13,268 INFO scraper | Success! 7607 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:00:13,317 INFO Finished scraper exit_code=0 duration=3.57s
+2026-05-06 10:00:13,318 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:00:21,334 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=1354270
+2026-05-06 10:00:21,334 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:00:22,264 INFO analysis-default | Analyzed 7607 total draws across 13 games.
+2026-05-06 10:00:22,264 INFO analysis-default | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 10:00:22,264 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 10:00:22,264 INFO analysis-default | Historical sum range: 72 to 305; median 180.0
+2026-05-06 10:00:22,264 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:00:22,264 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:00:22,264 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 10:00:22,264 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 10:00:22,264 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:00:22,323 INFO Finished analysis-default exit_code=0 duration=0.99s
+2026-05-06 10:00:22,323 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Analyzed 7607 total draws across 13 games.
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Historical sum range: 72 to 305; median 180.0
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 10:00:23,079 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:00:23,137 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.81s
+2026-05-06 10:00:23,138 INFO Pipeline completed successfully
+2026-05-06 10:01:50,687 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:01:50,688 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:01:50,688 INFO Acquired exclusive pipeline lock
+2026-05-06 10:01:50,688 INFO Starting synchronize: true
+2026-05-06 10:01:50,692 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 10:01:50,692 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:01:50,693 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:01:50,693 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:01:54,093 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:01:54,093 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:01:54,093 INFO scraper | Submitting search request...
+2026-05-06 10:01:54,093 INFO scraper | Success! 7607 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:01:54,143 INFO Finished scraper exit_code=0 duration=3.45s
+2026-05-06 10:01:54,144 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:02:02,165 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=1354270
+2026-05-06 10:02:02,165 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:02:03,129 INFO analysis-default | Analyzed 7607 total draws across 13 games.
+2026-05-06 10:02:03,129 INFO analysis-default | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 10:02:03,129 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 10:02:03,129 INFO analysis-default | Historical sum range: 72 to 305; median 180.0
+2026-05-06 10:02:03,129 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:02:03,129 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:02:03,129 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 10:02:03,129 INFO analysis-default | Suggested combinations saved: 39
+2026-05-06 10:02:03,129 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:02:03,194 INFO Finished analysis-default exit_code=0 duration=1.03s
+2026-05-06 10:02:03,195 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Analyzed 7607 total draws across 13 games.
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (363 historical draws)
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (125 draws)
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Historical sum range: 72 to 305; median 180.0
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Suggested combinations saved: 65
+2026-05-06 10:02:03,948 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:02:04,007 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.81s
+2026-05-06 10:02:04,007 INFO Pipeline completed successfully
+2026-05-06 10:04:56,033 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:04:56,033 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:04:56,033 INFO Acquired exclusive pipeline lock
+2026-05-06 10:04:56,033 INFO Starting synchronize: true
+2026-05-06 10:04:56,038 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 10:04:56,038 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:04:56,038 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:04:56,039 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:05:09,002 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:05:09,002 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:05:09,002 INFO scraper | Submitting search request...
+2026-05-06 10:05:09,002 INFO scraper | Success! 32079 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:05:09,331 INFO Finished scraper exit_code=0 duration=13.29s
+2026-05-06 10:05:09,331 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:05:17,346 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=5712373
+2026-05-06 10:05:17,347 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:05:17,969 INFO analysis-default | Traceback (most recent call last):
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 347, in <module>
+2026-05-06 10:05:17,970 INFO analysis-default |     main()
+2026-05-06 10:05:17,970 INFO analysis-default |     ~~~~^^
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 300, in main
+2026-05-06 10:05:17,970 INFO analysis-default |     freq_df = frequency_analysis(df)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 51, in frequency_analysis
+2026-05-06 10:05:17,970 INFO analysis-default |     exploded["numbers"] = exploded["numbers"].astype(int)
+2026-05-06 10:05:17,970 INFO analysis-default |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/generic.py", line 6541, in astype
+2026-05-06 10:05:17,970 INFO analysis-default |     new_data = self._mgr.astype(dtype=dtype, errors=errors)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 611, in astype
+2026-05-06 10:05:17,970 INFO analysis-default |     return self.apply("astype", dtype=dtype, errors=errors)
+2026-05-06 10:05:17,970 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 442, in apply
+2026-05-06 10:05:17,970 INFO analysis-default |     applied = getattr(b, f)(**kwargs)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/blocks.py", line 607, in astype
+2026-05-06 10:05:17,970 INFO analysis-default |     new_values = astype_array_safe(values, dtype, errors=errors)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 240, in astype_array_safe
+2026-05-06 10:05:17,970 INFO analysis-default |     new_values = astype_array(values, dtype, copy=copy)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 185, in astype_array
+2026-05-06 10:05:17,970 INFO analysis-default |     values = _astype_nansafe(values, dtype, copy=copy)
+2026-05-06 10:05:17,970 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+2026-05-06 10:05:17,970 INFO analysis-default |     return arr.astype(dtype, copy=True)
+2026-05-06 10:05:17,970 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2026-05-06 10:05:17,970 INFO analysis-default | ValueError: cannot convert float NaN to integer
+2026-05-06 10:05:18,036 INFO Finished analysis-default exit_code=1 duration=0.69s
+2026-05-06 10:05:18,036 WARNING analysis-default failed on attempt 1/2; retrying in 10.0s
+2026-05-06 10:05:28,041 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:05:28,563 INFO analysis-default | Traceback (most recent call last):
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 347, in <module>
+2026-05-06 10:05:28,564 INFO analysis-default |     main()
+2026-05-06 10:05:28,564 INFO analysis-default |     ~~~~^^
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 300, in main
+2026-05-06 10:05:28,564 INFO analysis-default |     freq_df = frequency_analysis(df)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 51, in frequency_analysis
+2026-05-06 10:05:28,564 INFO analysis-default |     exploded["numbers"] = exploded["numbers"].astype(int)
+2026-05-06 10:05:28,564 INFO analysis-default |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/generic.py", line 6541, in astype
+2026-05-06 10:05:28,564 INFO analysis-default |     new_data = self._mgr.astype(dtype=dtype, errors=errors)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 611, in astype
+2026-05-06 10:05:28,564 INFO analysis-default |     return self.apply("astype", dtype=dtype, errors=errors)
+2026-05-06 10:05:28,564 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 442, in apply
+2026-05-06 10:05:28,564 INFO analysis-default |     applied = getattr(b, f)(**kwargs)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/blocks.py", line 607, in astype
+2026-05-06 10:05:28,564 INFO analysis-default |     new_values = astype_array_safe(values, dtype, errors=errors)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 240, in astype_array_safe
+2026-05-06 10:05:28,564 INFO analysis-default |     new_values = astype_array(values, dtype, copy=copy)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 185, in astype_array
+2026-05-06 10:05:28,564 INFO analysis-default |     values = _astype_nansafe(values, dtype, copy=copy)
+2026-05-06 10:05:28,564 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+2026-05-06 10:05:28,564 INFO analysis-default |     return arr.astype(dtype, copy=True)
+2026-05-06 10:05:28,564 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2026-05-06 10:05:28,564 INFO analysis-default | ValueError: cannot convert float NaN to integer
+2026-05-06 10:05:28,619 INFO Finished analysis-default exit_code=1 duration=0.58s
+2026-05-06 10:05:28,619 ERROR Pipeline failed: analysis-default failed after retries: analysis-default failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 91, in _run_locked
+    self.run_with_retries(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        "analysis-default",
+        ^^^^^^^^^^^^^^^^^^^
+        [self.config.python_bin, str(self.config.analyzer_path)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 164, in run_with_retries
+    raise PipelineError(f"{label} failed after retries: {last_error}")
+PipelineError: analysis-default failed after retries: analysis-default failed with exit code 1
+2026-05-06 10:05:54,491 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:05:54,491 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:05:54,491 INFO Acquired exclusive pipeline lock
+2026-05-06 10:05:54,491 INFO Starting synchronize: true
+2026-05-06 10:05:54,494 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 10:05:54,494 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:05:54,495 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:05:54,495 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:06:00,196 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:06:00,196 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:06:00,196 INFO scraper | Submitting search request...
+2026-05-06 10:06:00,196 INFO scraper | Success! 32079 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:06:00,466 INFO Finished scraper exit_code=0 duration=5.97s
+2026-05-06 10:06:00,466 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:06:08,485 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=5712373
+2026-05-06 10:06:08,486 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:06:08,995 INFO analysis-default | Traceback (most recent call last):
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 347, in <module>
+2026-05-06 10:06:08,995 INFO analysis-default |     main()
+2026-05-06 10:06:08,995 INFO analysis-default |     ~~~~^^
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 300, in main
+2026-05-06 10:06:08,995 INFO analysis-default |     freq_df = frequency_analysis(df)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 51, in frequency_analysis
+2026-05-06 10:06:08,995 INFO analysis-default |     exploded["numbers"] = exploded["numbers"].astype(int)
+2026-05-06 10:06:08,995 INFO analysis-default |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/generic.py", line 6541, in astype
+2026-05-06 10:06:08,995 INFO analysis-default |     new_data = self._mgr.astype(dtype=dtype, errors=errors)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 611, in astype
+2026-05-06 10:06:08,995 INFO analysis-default |     return self.apply("astype", dtype=dtype, errors=errors)
+2026-05-06 10:06:08,995 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 442, in apply
+2026-05-06 10:06:08,995 INFO analysis-default |     applied = getattr(b, f)(**kwargs)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/blocks.py", line 607, in astype
+2026-05-06 10:06:08,995 INFO analysis-default |     new_values = astype_array_safe(values, dtype, errors=errors)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 240, in astype_array_safe
+2026-05-06 10:06:08,995 INFO analysis-default |     new_values = astype_array(values, dtype, copy=copy)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 185, in astype_array
+2026-05-06 10:06:08,995 INFO analysis-default |     values = _astype_nansafe(values, dtype, copy=copy)
+2026-05-06 10:06:08,995 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+2026-05-06 10:06:08,995 INFO analysis-default |     return arr.astype(dtype, copy=True)
+2026-05-06 10:06:08,995 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2026-05-06 10:06:08,995 INFO analysis-default | ValueError: cannot convert float NaN to integer
+2026-05-06 10:06:09,046 INFO Finished analysis-default exit_code=1 duration=0.56s
+2026-05-06 10:06:09,046 WARNING analysis-default failed on attempt 1/2; retrying in 10.0s
+2026-05-06 10:06:19,051 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:06:19,427 INFO analysis-default | Traceback (most recent call last):
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 347, in <module>
+2026-05-06 10:06:19,428 INFO analysis-default |     main()
+2026-05-06 10:06:19,428 INFO analysis-default |     ~~~~^^
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 300, in main
+2026-05-06 10:06:19,428 INFO analysis-default |     freq_df = frequency_analysis(df)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py", line 51, in frequency_analysis
+2026-05-06 10:06:19,428 INFO analysis-default |     exploded["numbers"] = exploded["numbers"].astype(int)
+2026-05-06 10:06:19,428 INFO analysis-default |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/generic.py", line 6541, in astype
+2026-05-06 10:06:19,428 INFO analysis-default |     new_data = self._mgr.astype(dtype=dtype, errors=errors)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 611, in astype
+2026-05-06 10:06:19,428 INFO analysis-default |     return self.apply("astype", dtype=dtype, errors=errors)
+2026-05-06 10:06:19,428 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/managers.py", line 442, in apply
+2026-05-06 10:06:19,428 INFO analysis-default |     applied = getattr(b, f)(**kwargs)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/internals/blocks.py", line 607, in astype
+2026-05-06 10:06:19,428 INFO analysis-default |     new_values = astype_array_safe(values, dtype, errors=errors)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 240, in astype_array_safe
+2026-05-06 10:06:19,428 INFO analysis-default |     new_values = astype_array(values, dtype, copy=copy)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 185, in astype_array
+2026-05-06 10:06:19,428 INFO analysis-default |     values = _astype_nansafe(values, dtype, copy=copy)
+2026-05-06 10:06:19,428 INFO analysis-default |   File "/Users/jonasodones/Desktop/src/my_scraper/pcso_env/lib/python3.14/site-packages/pandas/core/dtypes/astype.py", line 134, in _astype_nansafe
+2026-05-06 10:06:19,428 INFO analysis-default |     return arr.astype(dtype, copy=True)
+2026-05-06 10:06:19,428 INFO analysis-default |            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+2026-05-06 10:06:19,428 INFO analysis-default | ValueError: cannot convert float NaN to integer
+2026-05-06 10:06:19,477 INFO Finished analysis-default exit_code=1 duration=0.43s
+2026-05-06 10:06:19,477 ERROR Pipeline failed: analysis-default failed after retries: analysis-default failed with exit code 1
+Traceback (most recent call last):
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 273, in main
+    PcsoPipeline(config).run()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 76, in run
+    self._run_locked()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 91, in _run_locked
+    self.run_with_retries(
+    ~~~~~~~~~~~~~~~~~~~~~^
+        "analysis-default",
+        ^^^^^^^^^^^^^^^^^^^
+        [self.config.python_bin, str(self.config.analyzer_path)],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jonasodones/Desktop/src/my_scraper/./scripts/auto_pipeline.py", line 164, in run_with_retries
+    raise PipelineError(f"{label} failed after retries: {last_error}")
+PipelineError: analysis-default failed after retries: analysis-default failed with exit code 1
+2026-05-06 10:08:03,291 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:08:03,291 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:08:03,291 INFO Acquired exclusive pipeline lock
+2026-05-06 10:08:03,291 INFO Starting synchronize: true
+2026-05-06 10:08:03,296 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 10:08:03,296 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:08:03,296 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:08:03,296 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:08:09,627 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:08:09,628 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:08:09,628 INFO scraper | Submitting search request...
+2026-05-06 10:08:09,628 INFO scraper | Success! 32079 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:08:09,945 INFO Finished scraper exit_code=0 duration=6.65s
+2026-05-06 10:08:09,945 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:08:17,965 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=5712373
+2026-05-06 10:08:17,965 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:08:19,027 INFO analysis-default | Loaded 32079 total rows across 19 games.
+2026-05-06 10:08:19,028 INFO analysis-default | Analyzed 32049 valid draws across 19 games.
+2026-05-06 10:08:19,028 INFO analysis-default | Skipped 30 rows with no parseable combination numbers.
+2026-05-06 10:08:19,028 INFO analysis-default | Selected game: Ultra Lotto 6/58 (1482 historical draws)
+2026-05-06 10:08:19,028 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (520 draws)
+2026-05-06 10:08:19,028 INFO analysis-default | Historical sum range: 55 to 305; median 176.0
+2026-05-06 10:08:19,028 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:08:19,028 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:08:19,028 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 10:08:19,028 INFO analysis-default | Suggested combinations saved: 57
+2026-05-06 10:08:19,028 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:08:19,100 INFO Finished analysis-default exit_code=0 duration=1.13s
+2026-05-06 10:08:19,100 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 10:08:19,940 INFO analysis-suggestions-5 | Loaded 32079 total rows across 19 games.
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Analyzed 32049 valid draws across 19 games.
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Skipped 30 rows with no parseable combination numbers.
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (1482 historical draws)
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (520 draws)
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Historical sum range: 55 to 305; median 176.0
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Suggested combinations saved: 95
+2026-05-06 10:08:19,941 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:08:20,013 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.91s
+2026-05-06 10:08:20,014 INFO Pipeline completed successfully
+2026-05-06 10:08:57,210 INFO Pipeline requested project_root=/Users/jonasodones/Desktop/src/my_scraper
+2026-05-06 10:08:57,210 INFO Waiting for exclusive pipeline lock: /Users/jonasodones/Desktop/src/my_scraper/.pipeline.lock
+2026-05-06 10:08:57,210 INFO Acquired exclusive pipeline lock
+2026-05-06 10:08:57,211 INFO Starting synchronize: true
+2026-05-06 10:08:57,215 INFO Finished synchronize exit_code=0 duration=0.00s
+2026-05-06 10:08:57,215 INFO Cleaning stale output: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:08:57,216 INFO Deleting files inside analysis directory: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:08:57,217 INFO Starting scraper: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python pcso_lottery_scraper.py
+2026-05-06 10:09:03,123 INFO scraper | Connecting to PCSO as a browser (Stealth Mode)...
+2026-05-06 10:09:03,123 INFO scraper | Wait for 2 seconds to mimic human reading time...
+2026-05-06 10:09:03,123 INFO scraper | Submitting search request...
+2026-05-06 10:09:03,123 INFO scraper | Success! 32079 results saved to /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json
+2026-05-06 10:09:03,414 INFO Finished scraper exit_code=0 duration=6.20s
+2026-05-06 10:09:03,414 INFO Waiting for stable file: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json stability_seconds=5.0 timeout=600.0
+2026-05-06 10:09:11,435 INFO File is stable: /Users/jonasodones/Desktop/src/my_scraper/pcso_results.json size=5712373
+2026-05-06 10:09:11,435 INFO Starting analysis-default: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py
+2026-05-06 10:09:12,481 INFO analysis-default | Loaded 32079 total rows across 19 games.
+2026-05-06 10:09:12,481 INFO analysis-default | Analyzed 32049 valid draws across 19 games.
+2026-05-06 10:09:12,481 INFO analysis-default | Skipped 30 rows with no parseable combination numbers.
+2026-05-06 10:09:12,481 INFO analysis-default | Selected game: Ultra Lotto 6/58 (1482 historical draws)
+2026-05-06 10:09:12,481 INFO analysis-default | Most common odd/even pattern: 3 odd / 3 even (520 draws)
+2026-05-06 10:09:12,481 INFO analysis-default | Historical sum range: 55 to 305; median 176.0
+2026-05-06 10:09:12,481 INFO analysis-default | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:09:12,481 INFO analysis-default | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:09:12,481 INFO analysis-default | Simulation hits: 0 of 200,000
+2026-05-06 10:09:12,481 INFO analysis-default | Suggested combinations saved: 57
+2026-05-06 10:09:12,481 INFO analysis-default | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:09:12,542 INFO Finished analysis-default exit_code=0 duration=1.11s
+2026-05-06 10:09:12,542 INFO Starting analysis-suggestions-5: /Users/jonasodones/Desktop/src/my_scraper/pcso_env/bin/python /Users/jonasodones/Desktop/src/my_scraper/analyze_pcso_results.py --suggestions-per-game 5
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Loaded 32079 total rows across 19 games.
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Analyzed 32049 valid draws across 19 games.
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Skipped 30 rows with no parseable combination numbers.
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Selected game: Ultra Lotto 6/58 (1482 historical draws)
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Most common odd/even pattern: 3 odd / 3 even (520 draws)
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Historical sum range: 55 to 305; median 176.0
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Monte Carlo target combination: 1-58-25-43-26-16
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Theoretical exact-match probability: 0.000000024706 (about 1 in 40,475,358)
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Simulation hits: 0 of 200,000
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Suggested combinations saved: 95
+2026-05-06 10:09:13,362 INFO analysis-suggestions-5 | Outputs saved to: /Users/jonasodones/Desktop/src/my_scraper/analysis_outputs
+2026-05-06 10:09:13,422 INFO Finished analysis-suggestions-5 exit_code=0 duration=0.88s
+2026-05-06 10:09:13,422 INFO Pipeline completed successfully

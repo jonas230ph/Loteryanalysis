@@ -42,7 +42,7 @@ def scrape_pcso_stealth():
             **hidden_fields,
             "ctl00$ctl00$cphContainer$cpContent$ddlStartMonth": "January",
             "ctl00$ctl00$cphContainer$cpContent$ddlStartDate": "1",
-            "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": current_year,
+            "ctl00$ctl00$cphContainer$cpContent$ddlStartYear": "2016",
             "ctl00$ctl00$cphContainer$cpContent$ddlEndMonth": now.strftime("%B"),
             "ctl00$ctl00$cphContainer$cpContent$ddlEndDay": str(now.day),
             "ctl00$ctl00$cphContainer$cpContent$ddlEndYear": current_year,

@@ -24,6 +24,12 @@ GAME_RULES = {
     "2D Lotto 2PM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
     "2D Lotto 5PM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
     "2D Lotto 9PM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
+    "EZ2 Lotto 11:30AM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
+    "EZ2 Lotto 12:30PM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
+    "EZ2 Lotto 2PM": {"pool": 31, "pick": 2, "replace": False, "ordered": True},
+    "Suertres Lotto 11:30AM": {"pool": 10, "pick": 3, "replace": True, "ordered": True},
+    "Suertres Lotto 12:30PM": {"pool": 10, "pick": 3, "replace": True, "ordered": True},
+    "Suertres Lotto 2PM": {"pool": 10, "pick": 3, "replace": True, "ordered": True},
 }
 
 
@@ -46,8 +52,17 @@ def load_results(path):
     return df
 
 
+def valid_draws(df):
+    return df[df["number_count"] > 0].copy()
+
+
+def invalid_draws(df):
+    return df[df["number_count"] == 0].copy()
+
+
 def frequency_analysis(df):
     exploded = df[["lotto_game", "numbers"]].explode("numbers")
+    exploded = exploded.dropna(subset=["numbers"])
     exploded["numbers"] = exploded["numbers"].astype(int)
     return (
         exploded.groupby(["lotto_game", "numbers"])
@@ -112,6 +127,8 @@ def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, 
         weights = np.array([game_freq.get(value, 0) + 1 for value in values], dtype=float)
 
         game_patterns = pattern_df[pattern_df["lotto_game"] == game].sort_values("draws", ascending=False)
+        if game_patterns.empty:
+            continue
         preferred_pattern = game_patterns.iloc[0]["odd_even_pattern"]
         preferred_counts = pattern_counts(preferred_pattern)
 
@@ -122,7 +139,8 @@ def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, 
 
         seen = set()
         attempts = 0
-        while len([row for row in suggestions if row["lotto_game"] == game]) < suggestions_per_game and attempts < 20_000:
+        game_suggestion_count = 0
+        while game_suggestion_count < suggestions_per_game and attempts < 20_000:
             attempts += 1
 
             if rule["replace"]:
@@ -165,6 +183,7 @@ def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, 
                 "historical_frequency_score": int(score),
                 "basis": "weighted by historical frequency, common odd/even pattern, and median-sum range",
             })
+            game_suggestion_count += 1
 
     return pd.DataFrame(suggestions)
 
@@ -292,7 +311,15 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    df = load_results(input_path)
+    raw_df = load_results(input_path)
+    skipped_df = invalid_draws(raw_df)
+    df = valid_draws(raw_df)
+    if df.empty:
+        raise SystemExit("No valid draw combinations found in input data.")
+
+    if not skipped_df.empty:
+        skipped_df.drop(columns=["numbers"], errors="ignore").to_csv(output_dir / "skipped_invalid_draws.csv", index=False)
+
     if args.game not in set(df["lotto_game"]):
         available = ", ".join(sorted(df["lotto_game"].unique()))
         raise SystemExit(f"Game not found: {args.game}. Available games: {available}")
@@ -332,7 +359,10 @@ def main():
     game_sums = sum_df[sum_df["lotto_game"] == args.game].iloc[0]
     probability = exact_probability(rule)
 
-    print(f"Analyzed {len(df)} total draws across {df['lotto_game'].nunique()} games.")
+    print(f"Loaded {len(raw_df)} total rows across {raw_df['lotto_game'].nunique()} games.")
+    print(f"Analyzed {len(df)} valid draws across {df['lotto_game'].nunique()} games.")
+    if not skipped_df.empty:
+        print(f"Skipped {len(skipped_df)} rows with no parseable combination numbers.")
     print(f"Selected game: {args.game} ({len(game_df)} historical draws)")
     print(f"Most common odd/even pattern: {most_common_pattern['odd_even_pattern']} ({most_common_pattern['draws']} draws)")
     print(f"Historical sum range: {int(game_sums['min'])} to {int(game_sums['max'])}; median {game_sums['median']}")
