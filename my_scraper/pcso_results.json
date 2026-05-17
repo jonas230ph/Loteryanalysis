@@ -1,6 +1,195 @@
 [
     {
         "lotto_game": "Ultra Lotto 6/58",
+        "combinations": "35-20-54-51-08-02",
+        "draw_date": "5/8/2026",
+        "jackpot": "75,000,000.00",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "Megalotto 6/45",
+        "combinations": "04-32-23-12-22-09",
+        "draw_date": "5/8/2026",
+        "jackpot": "15,000,000.00",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "4D Lotto",
+        "combinations": "6-3-8-9",
+        "draw_date": "5/8/2026",
+        "jackpot": "26,475.00",
+        "winners": "31"
+    },
+    {
+        "lotto_game": "3D Lotto 2PM",
+        "combinations": "6-9-3",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,500.00",
+        "winners": "192"
+    },
+    {
+        "lotto_game": "3D Lotto 5PM",
+        "combinations": "2-2-9",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,500.00",
+        "winners": "160"
+    },
+    {
+        "lotto_game": "3D Lotto 9PM",
+        "combinations": "2-1-5",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,500.00",
+        "winners": "594"
+    },
+    {
+        "lotto_game": "2D Lotto 2PM",
+        "combinations": "26-12",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,000.00",
+        "winners": "189"
+    },
+    {
+        "lotto_game": "2D Lotto 5PM",
+        "combinations": "27-07",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,000.00",
+        "winners": "64"
+    },
+    {
+        "lotto_game": "2D Lotto 9PM",
+        "combinations": "29-27",
+        "draw_date": "5/8/2026",
+        "jackpot": "4,000.00",
+        "winners": "514"
+    },
+    {
+        "lotto_game": "Superlotto 6/49",
+        "combinations": "47-11-24-33-48-02",
+        "draw_date": "5/7/2026",
+        "jackpot": "25,000,000.00",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "Lotto 6/42",
+        "combinations": "28-20-36-29-11-27",
+        "draw_date": "5/7/2026",
+        "jackpot": "10,000,000.00",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "6D Lotto",
+        "combinations": "4-0-6-8-8-7",
+        "draw_date": "5/7/2026",
+        "jackpot": "6,600,139.48",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "3D Lotto 2PM",
+        "combinations": "3-9-6",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,500.00",
+        "winners": "263"
+    },
+    {
+        "lotto_game": "3D Lotto 5PM",
+        "combinations": "6-6-1",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,500.00",
+        "winners": "165"
+    },
+    {
+        "lotto_game": "3D Lotto 9PM",
+        "combinations": "9-4-4",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,500.00",
+        "winners": "210"
+    },
+    {
+        "lotto_game": "2D Lotto 2PM",
+        "combinations": "28-22",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,000.00",
+        "winners": "108"
+    },
+    {
+        "lotto_game": "2D Lotto 5PM",
+        "combinations": "14-17",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,000.00",
+        "winners": "150"
+    },
+    {
+        "lotto_game": "2D Lotto 9PM",
+        "combinations": "19-16",
+        "draw_date": "5/7/2026",
+        "jackpot": "4,000.00",
+        "winners": "238"
+    },
+    {
+        "lotto_game": "Grand Lotto 6/55",
+        "combinations": "05-40-27-24-55-22",
+        "draw_date": "5/6/2026",
+        "jackpot": "85,767,922.62",
+        "winners": "0"
+    },
+    {
+        "lotto_game": "Megalotto 6/45",
+        "combinations": "01-03-24-18-11-10",
+        "draw_date": "5/6/2026",
+        "jackpot": "15,000,000.00",
+        "winners": "1"
+    },
+    {
+        "lotto_game": "4D Lotto",
+        "combinations": "0-9-2-6",
+        "draw_date": "5/6/2026",
+        "jackpot": "10,000.00",
+        "winners": "58"
+    },
+    {
+        "lotto_game": "3D Lotto 2PM",
+        "combinations": "1-0-2",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,500.00",
+        "winners": "364"
+    },
+    {
+        "lotto_game": "3D Lotto 5PM",
+        "combinations": "6-1-1",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,500.00",
+        "winners": "230"
+    },
+    {
+        "lotto_game": "3D Lotto 9PM",
+        "combinations": "2-7-6",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,500.00",
+        "winners": "286"
+    },
+    {
+        "lotto_game": "2D Lotto 2PM",
+        "combinations": "13-08",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,000.00",
+        "winners": "205"
+    },
+    {
+        "lotto_game": "2D Lotto 5PM",
+        "combinations": "16-26",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,000.00",
+        "winners": "145"
+    },
+    {
+        "lotto_game": "2D Lotto 9PM",
+        "combinations": "06-03",
+        "draw_date": "5/6/2026",
+        "jackpot": "4,000.00",
+        "winners": "591"
+    },
+    {
+        "lotto_game": "Ultra Lotto 6/58",
         "combinations": "01-58-25-43-26-16",
         "draw_date": "5/5/2026",
         "jackpot": "76,305,973.15",
@@ -38619,6 +38808,34 @@
         "winners": "935"
     },
     {
+        "lotto_game": "3D Lotto 9PM",
+        "combinations": "5-7-9",
+        "draw_date": "8/24/2024",
+        "jackpot": "4,500.00",
+        "winners": "575"
+    },
+    {
+        "lotto_game": "2D Lotto 2PM",
+        "combinations": "12-28",
+        "draw_date": "8/24/2024",
+        "jackpot": "4,000.00",
+        "winners": "555"
+    },
+    {
+        "lotto_game": "2D Lotto 5PM",
+        "combinations": "16-31",
+        "draw_date": "8/24/2024",
+        "jackpot": "4,000.00",
+        "winners": "147"
+    },
+    {
+        "lotto_game": "2D Lotto 9PM",
+        "combinations": "19-12",
+        "draw_date": "8/24/2024",
+        "jackpot": "4,000.00",
+        "winners": "332"
+    },
+    {
         "lotto_game": "Grand Lotto 6/55",
         "combinations": "44-16-40-13-42-15",
         "draw_date": "8/24/2024",
@@ -38652,34 +38869,6 @@
         "draw_date": "8/24/2024",
         "jackpot": "4,500.00",
         "winners": "151"
-    },
-    {
-        "lotto_game": "3D Lotto 9PM",
-        "combinations": "5-7-9",
-        "draw_date": "8/24/2024",
-        "jackpot": "4,500.00",
-        "winners": "575"
-    },
-    {
-        "lotto_game": "2D Lotto 2PM",
-        "combinations": "12-28",
-        "draw_date": "8/24/2024",
-        "jackpot": "4,000.00",
-        "winners": "555"
-    },
-    {
-        "lotto_game": "2D Lotto 5PM",
-        "combinations": "16-31",
-        "draw_date": "8/24/2024",
-        "jackpot": "4,000.00",
-        "winners": "147"
-    },
-    {
-        "lotto_game": "2D Lotto 9PM",
-        "combinations": "19-12",
-        "draw_date": "8/24/2024",
-        "jackpot": "4,000.00",
-        "winners": "332"
     },
     {
         "lotto_game": "Ultra Lotto 6/58",
@@ -158648,13 +158837,6 @@
         "winners": "0"
     },
     {
-        "lotto_game": "Ultra Lotto 6/58",
-        "combinations": "07-01-25-13-11-38",
-        "draw_date": "12/4/2018",
-        "jackpot": "49,500,000.00",
-        "winners": "0"
-    },
-    {
         "lotto_game": "Superlotto 6/49",
         "combinations": "27-19-45-24-41-29",
         "draw_date": "12/4/2018",
@@ -158716,6 +158898,13 @@
         "draw_date": "12/4/2018",
         "jackpot": "4,000.00",
         "winners": "240"
+    },
+    {
+        "lotto_game": "Ultra Lotto 6/58",
+        "combinations": "07-01-25-13-11-38",
+        "draw_date": "12/4/2018",
+        "jackpot": "49,500,000.00",
+        "winners": "0"
     },
     {
         "lotto_game": "Megalotto 6/45",

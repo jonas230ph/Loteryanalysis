@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "FlightAware US Delay CSV",
+  "version": "1.0.1",
+  "description": "Scrapes FlightAware US delay and cancellation totals for today and the previous three days, then exports a CSV.",
+  "action": {
+    "default_title": "FlightAware CSV",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.flightaware.com/live/cancelled*"
+  ]
+}

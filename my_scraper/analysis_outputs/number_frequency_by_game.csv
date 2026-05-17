@@ -7,25 +7,25 @@ lotto_game,numbers,frequency
 2D Lotto 2PM,1,246
 2D Lotto 2PM,6,244
 2D Lotto 2PM,20,243
-2D Lotto 2PM,28,241
+2D Lotto 2PM,28,242
 2D Lotto 2PM,7,240
 2D Lotto 2PM,15,239
 2D Lotto 2PM,27,238
 2D Lotto 2PM,30,236
 2D Lotto 2PM,9,235
 2D Lotto 2PM,31,234
-2D Lotto 2PM,13,231
+2D Lotto 2PM,13,232
+2D Lotto 2PM,22,229
 2D Lotto 2PM,29,229
-2D Lotto 2PM,22,228
 2D Lotto 2PM,18,226
 2D Lotto 2PM,4,224
 2D Lotto 2PM,10,224
-2D Lotto 2PM,8,220
-2D Lotto 2PM,12,220
+2D Lotto 2PM,8,221
+2D Lotto 2PM,12,221
 2D Lotto 2PM,5,218
 2D Lotto 2PM,23,215
 2D Lotto 2PM,14,214
-2D Lotto 2PM,26,211
+2D Lotto 2PM,26,212
 2D Lotto 2PM,2,208
 2D Lotto 2PM,16,206
 2D Lotto 2PM,19,204
@@ -33,23 +33,23 @@ lotto_game,numbers,frequency
 2D Lotto 5PM,5,255
 2D Lotto 5PM,8,253
 2D Lotto 5PM,22,250
-2D Lotto 5PM,27,249
-2D Lotto 5PM,7,247
+2D Lotto 5PM,27,250
+2D Lotto 5PM,7,248
 2D Lotto 5PM,10,245
 2D Lotto 5PM,23,244
 2D Lotto 5PM,19,243
 2D Lotto 5PM,18,242
 2D Lotto 5PM,9,241
-2D Lotto 5PM,16,238
+2D Lotto 5PM,16,239
 2D Lotto 5PM,20,237
-2D Lotto 5PM,26,236
+2D Lotto 5PM,26,237
 2D Lotto 5PM,1,233
 2D Lotto 5PM,15,233
 2D Lotto 5PM,12,230
 2D Lotto 5PM,24,230
 2D Lotto 5PM,6,229
+2D Lotto 5PM,14,229
 2D Lotto 5PM,21,229
-2D Lotto 5PM,14,228
 2D Lotto 5PM,25,227
 2D Lotto 5PM,31,225
 2D Lotto 5PM,28,223
@@ -60,9 +60,9 @@ lotto_game,numbers,frequency
 2D Lotto 5PM,30,210
 2D Lotto 5PM,2,207
 2D Lotto 5PM,13,200
-2D Lotto 5PM,17,180
+2D Lotto 5PM,17,181
 2D Lotto 9PM,9,259
-2D Lotto 9PM,16,256
+2D Lotto 9PM,16,257
 2D Lotto 9PM,7,249
 2D Lotto 9PM,20,249
 2D Lotto 9PM,4,246
@@ -75,71 +75,71 @@ lotto_game,numbers,frequency
 2D Lotto 9PM,1,234
 2D Lotto 9PM,18,233
 2D Lotto 9PM,24,233
+2D Lotto 9PM,3,231
 2D Lotto 9PM,5,231
 2D Lotto 9PM,22,231
-2D Lotto 9PM,3,230
-2D Lotto 9PM,29,230
-2D Lotto 9PM,27,226
+2D Lotto 9PM,29,231
+2D Lotto 9PM,27,227
 2D Lotto 9PM,14,224
-2D Lotto 9PM,19,223
+2D Lotto 9PM,19,224
 2D Lotto 9PM,23,223
 2D Lotto 9PM,8,222
 2D Lotto 9PM,13,221
 2D Lotto 9PM,30,219
+2D Lotto 9PM,6,214
 2D Lotto 9PM,10,214
-2D Lotto 9PM,6,213
 2D Lotto 9PM,21,211
 2D Lotto 9PM,11,210
 2D Lotto 9PM,28,210
 2D Lotto 9PM,15,200
 3D Lotto 2PM,8,1134
-3D Lotto 2PM,2,1108
-3D Lotto 2PM,3,1100
-3D Lotto 2PM,6,1090
-3D Lotto 2PM,1,1069
+3D Lotto 2PM,2,1109
+3D Lotto 2PM,3,1102
+3D Lotto 2PM,6,1092
+3D Lotto 2PM,1,1070
 3D Lotto 2PM,7,1053
-3D Lotto 2PM,0,1050
-3D Lotto 2PM,9,1050
+3D Lotto 2PM,9,1052
+3D Lotto 2PM,0,1051
 3D Lotto 2PM,4,1030
 3D Lotto 2PM,5,1026
 3D Lotto 5PM,4,1116
 3D Lotto 5PM,3,1092
-3D Lotto 5PM,1,1086
+3D Lotto 5PM,1,1089
 3D Lotto 5PM,0,1081
+3D Lotto 5PM,6,1068
 3D Lotto 5PM,5,1067
 3D Lotto 5PM,7,1067
-3D Lotto 5PM,6,1065
-3D Lotto 5PM,2,1062
-3D Lotto 5PM,9,1047
+3D Lotto 5PM,2,1064
+3D Lotto 5PM,9,1048
 3D Lotto 5PM,8,1024
-3D Lotto 9PM,7,1116
-3D Lotto 9PM,1,1107
+3D Lotto 9PM,7,1117
+3D Lotto 9PM,1,1108
 3D Lotto 9PM,0,1101
-3D Lotto 9PM,2,1080
-3D Lotto 9PM,4,1080
-3D Lotto 9PM,5,1072
+3D Lotto 9PM,2,1082
+3D Lotto 9PM,4,1082
+3D Lotto 9PM,5,1073
 3D Lotto 9PM,3,1057
-3D Lotto 9PM,6,1047
-3D Lotto 9PM,9,1044
+3D Lotto 9PM,6,1048
+3D Lotto 9PM,9,1045
 3D Lotto 9PM,8,1003
 4D Lotto,7,628
-4D Lotto,0,614
+4D Lotto,0,615
 4D Lotto,4,603
-4D Lotto,8,602
+4D Lotto,8,603
 4D Lotto,1,597
-4D Lotto,2,596
+4D Lotto,2,597
 4D Lotto,5,582
-4D Lotto,6,579
-4D Lotto,9,573
-4D Lotto,3,558
+4D Lotto,6,581
+4D Lotto,9,575
+4D Lotto,3,559
 6D Lotto,2,949
-6D Lotto,0,905
+6D Lotto,0,906
 6D Lotto,1,901
 6D Lotto,9,900
-6D Lotto,8,880
-6D Lotto,4,879
-6D Lotto,7,876
-6D Lotto,6,871
+6D Lotto,8,882
+6D Lotto,4,880
+6D Lotto,7,877
+6D Lotto,6,872
 6D Lotto,3,865
 6D Lotto,5,836
 EZ2 Lotto 11:30AM,4,1
@@ -156,8 +156,8 @@ EZ2 Lotto 2PM,25,1
 EZ2 Lotto 2PM,31,1
 Grand Lotto 6/55,33,192
 Grand Lotto 6/55,52,191
+Grand Lotto 6/55,5,188
 Grand Lotto 6/55,20,188
-Grand Lotto 6/55,5,187
 Grand Lotto 6/55,6,187
 Grand Lotto 6/55,41,187
 Grand Lotto 6/55,42,187
@@ -167,9 +167,9 @@ Grand Lotto 6/55,28,185
 Grand Lotto 6/55,3,184
 Grand Lotto 6/55,43,183
 Grand Lotto 6/55,17,182
+Grand Lotto 6/55,24,182
 Grand Lotto 6/55,45,182
 Grand Lotto 6/55,51,182
-Grand Lotto 6/55,24,181
 Grand Lotto 6/55,2,180
 Grand Lotto 6/55,44,179
 Grand Lotto 6/55,49,178
@@ -179,18 +179,18 @@ Grand Lotto 6/55,13,175
 Grand Lotto 6/55,15,175
 Grand Lotto 6/55,30,175
 Grand Lotto 6/55,35,175
-Grand Lotto 6/55,27,173
+Grand Lotto 6/55,27,174
 Grand Lotto 6/55,10,172
 Grand Lotto 6/55,38,172
 Grand Lotto 6/55,1,171
+Grand Lotto 6/55,55,171
 Grand Lotto 6/55,29,170
-Grand Lotto 6/55,55,170
 Grand Lotto 6/55,47,168
 Grand Lotto 6/55,23,167
 Grand Lotto 6/55,50,167
-Grand Lotto 6/55,22,164
+Grand Lotto 6/55,22,165
+Grand Lotto 6/55,40,163
 Grand Lotto 6/55,19,162
-Grand Lotto 6/55,40,162
 Grand Lotto 6/55,26,161
 Grand Lotto 6/55,16,159
 Grand Lotto 6/55,21,159
@@ -214,7 +214,7 @@ Lotto 6/42,31,242
 Lotto 6/42,41,239
 Lotto 6/42,5,236
 Lotto 6/42,19,236
-Lotto 6/42,36,234
+Lotto 6/42,36,235
 Lotto 6/42,4,233
 Lotto 6/42,16,232
 Lotto 6/42,25,232
@@ -231,66 +231,66 @@ Lotto 6/42,15,222
 Lotto 6/42,21,220
 Lotto 6/42,33,220
 Lotto 6/42,24,219
-Lotto 6/42,29,218
+Lotto 6/42,29,219
 Lotto 6/42,2,216
 Lotto 6/42,17,216
-Lotto 6/42,27,215
+Lotto 6/42,27,216
 Lotto 6/42,39,215
 Lotto 6/42,10,214
 Lotto 6/42,13,213
+Lotto 6/42,20,213
 Lotto 6/42,30,213
 Lotto 6/42,34,213
 Lotto 6/42,37,213
-Lotto 6/42,20,212
 Lotto 6/42,42,212
 Lotto 6/42,40,210
 Lotto 6/42,6,209
 Lotto 6/42,32,209
+Lotto 6/42,11,207
 Lotto 6/42,38,207
 Lotto 6/42,1,206
-Lotto 6/42,11,206
 Lotto 6/42,26,199
-Lotto 6/42,28,197
+Lotto 6/42,28,198
 Megalotto 6/45,42,243
 Megalotto 6/45,25,239
-Megalotto 6/45,4,232
-Megalotto 6/45,3,229
+Megalotto 6/45,4,233
+Megalotto 6/45,3,230
 Megalotto 6/45,31,226
 Megalotto 6/45,38,225
 Megalotto 6/45,43,224
-Megalotto 6/45,10,222
+Megalotto 6/45,10,223
+Megalotto 6/45,23,218
 Megalotto 6/45,27,218
-Megalotto 6/45,23,217
 Megalotto 6/45,41,217
 Megalotto 6/45,35,215
 Megalotto 6/45,40,215
 Megalotto 6/45,30,214
 Megalotto 6/45,33,214
 Megalotto 6/45,5,212
+Megalotto 6/45,1,211
 Megalotto 6/45,7,211
-Megalotto 6/45,1,210
-Megalotto 6/45,18,210
+Megalotto 6/45,18,211
+Megalotto 6/45,11,209
 Megalotto 6/45,20,209
 Megalotto 6/45,34,209
 Megalotto 6/45,37,209
-Megalotto 6/45,11,208
 Megalotto 6/45,15,207
+Megalotto 6/45,32,205
 Megalotto 6/45,6,204
 Megalotto 6/45,17,204
-Megalotto 6/45,32,204
 Megalotto 6/45,2,203
 Megalotto 6/45,39,203
 Megalotto 6/45,44,203
+Megalotto 6/45,24,198
 Megalotto 6/45,8,197
-Megalotto 6/45,24,197
 Megalotto 6/45,45,196
 Megalotto 6/45,19,195
 Megalotto 6/45,13,192
+Megalotto 6/45,22,192
 Megalotto 6/45,21,191
-Megalotto 6/45,22,191
-Megalotto 6/45,9,189
+Megalotto 6/45,9,190
+Megalotto 6/45,12,188
 Megalotto 6/45,28,188
-Megalotto 6/45,12,187
 Megalotto 6/45,14,182
 Megalotto 6/45,16,182
 Megalotto 6/45,29,182
@@ -320,19 +320,19 @@ Superlotto 6/49,41,211
 Superlotto 6/49,16,205
 Superlotto 6/49,13,204
 Superlotto 6/49,44,200
+Superlotto 6/49,47,200
 Superlotto 6/49,26,199
 Superlotto 6/49,32,199
-Superlotto 6/49,47,199
 Superlotto 6/49,28,198
 Superlotto 6/49,45,197
 Superlotto 6/49,7,195
+Superlotto 6/49,33,195
 Superlotto 6/49,34,195
 Superlotto 6/49,4,194
-Superlotto 6/49,33,194
 Superlotto 6/49,23,193
+Superlotto 6/49,24,193
 Superlotto 6/49,43,193
 Superlotto 6/49,21,192
-Superlotto 6/49,24,192
 Superlotto 6/49,17,191
 Superlotto 6/49,36,191
 Superlotto 6/49,37,191
@@ -341,12 +341,12 @@ Superlotto 6/49,31,190
 Superlotto 6/49,39,189
 Superlotto 6/49,46,189
 Superlotto 6/49,9,187
+Superlotto 6/49,2,185
 Superlotto 6/49,14,185
 Superlotto 6/49,38,185
-Superlotto 6/49,2,184
 Superlotto 6/49,42,184
+Superlotto 6/49,48,183
 Superlotto 6/49,10,182
-Superlotto 6/49,48,182
 Superlotto 6/49,12,181
 Superlotto 6/49,18,181
 Superlotto 6/49,25,178
@@ -358,14 +358,14 @@ Superlotto 6/49,5,170
 Superlotto 6/49,22,170
 Superlotto 6/49,15,166
 Superlotto 6/49,6,164
+Superlotto 6/49,11,163
 Superlotto 6/49,40,163
 Superlotto 6/49,49,163
-Superlotto 6/49,11,162
 Ultra Lotto 6/58,19,174
 Ultra Lotto 6/58,6,173
+Ultra Lotto 6/58,2,171
 Ultra Lotto 6/58,14,171
 Ultra Lotto 6/58,22,171
-Ultra Lotto 6/58,2,170
 Ultra Lotto 6/58,34,167
 Ultra Lotto 6/58,5,164
 Ultra Lotto 6/58,13,164
@@ -377,22 +377,22 @@ Ultra Lotto 6/58,43,162
 Ultra Lotto 6/58,45,162
 Ultra Lotto 6/58,17,161
 Ultra Lotto 6/58,30,160
+Ultra Lotto 6/58,8,159
 Ultra Lotto 6/58,49,159
-Ultra Lotto 6/58,8,158
+Ultra Lotto 6/58,51,158
 Ultra Lotto 6/58,9,157
 Ultra Lotto 6/58,47,157
-Ultra Lotto 6/58,51,157
 Ultra Lotto 6/58,52,157
+Ultra Lotto 6/58,54,157
 Ultra Lotto 6/58,1,156
-Ultra Lotto 6/58,54,156
 Ultra Lotto 6/58,3,155
 Ultra Lotto 6/58,56,155
 Ultra Lotto 6/58,16,154
 Ultra Lotto 6/58,29,154
 Ultra Lotto 6/58,40,154
+Ultra Lotto 6/58,35,153
 Ultra Lotto 6/58,44,153
 Ultra Lotto 6/58,58,153
-Ultra Lotto 6/58,35,152
 Ultra Lotto 6/58,46,152
 Ultra Lotto 6/58,37,151
 Ultra Lotto 6/58,55,151
@@ -405,9 +405,9 @@ Ultra Lotto 6/58,12,146
 Ultra Lotto 6/58,38,146
 Ultra Lotto 6/58,42,146
 Ultra Lotto 6/58,57,146
+Ultra Lotto 6/58,20,145
 Ultra Lotto 6/58,32,145
 Ultra Lotto 6/58,41,145
-Ultra Lotto 6/58,20,144
 Ultra Lotto 6/58,21,144
 Ultra Lotto 6/58,26,144
 Ultra Lotto 6/58,31,143

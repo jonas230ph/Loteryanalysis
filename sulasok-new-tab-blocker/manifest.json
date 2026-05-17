@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Sulasok New Tab Blocker",
+  "version": "1.0.0",
+  "description": "Stops sulasok.am from opening extra tabs or pop-up windows.",
+  "permissions": [
+    "browsingData",
+    "history",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FlightAware CSV</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <p class="eyebrow">FlightAware</p>
+        <h1>US delay totals</h1>
+      </header>
+
+      <button id="scrapeButton" type="button">Scrape 4 days and export CSV</button>
+
+      <p id="status" class="status" role="status">Ready.</p>
+
+      <section id="results" class="results" hidden>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Delays</th>
+              <th>Cancellations</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
