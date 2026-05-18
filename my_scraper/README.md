@@ -218,6 +218,21 @@ Use a custom output folder:
 This project includes two automation scripts:
 
 - `scripts/auto_pipeline.sh` - Bash implementation.
+
+## Mobile API and iOS App
+
+This project includes a separated mobile layer:
+
+- `mobile_api/` serves scraper and analysis outputs as JSON.
+- `ios_app/PCSOLotto/` contains SwiftUI source files for the iPhone app.
+
+Start the local mobile API:
+
+```bash
+./pcso_env/bin/python -m mobile_api.app
+```
+
+Then point the SwiftUI app to `http://127.0.0.1:8080` in the simulator, or to the Mac's LAN IP address when testing on a physical iPhone.
 - `scripts/auto_pipeline.py` - Python implementation.
 
 Both scripts run the same pipeline:
