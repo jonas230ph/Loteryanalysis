@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from mobile_api.services.results_service import ResultsService
+from mobile_api.services.analysis_service import AnalysisService
 
 
 class ResultsServiceTests(unittest.TestCase):
@@ -52,3 +53,46 @@ class ResultsServiceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaises(FileNotFoundError):
                 ResultsService(Path(tmp)).list_results()
+
+
+class AnalysisServiceTests(unittest.TestCase):
+    def test_builds_game_analysis_from_csv_outputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outputs = root / "analysis_outputs"
+            outputs.mkdir()
+            (outputs / "number_frequency_by_game.csv").write_text(
+                "lotto_game,numbers,frequency\nUltra Lotto 6/58,1,12\nUltra Lotto 6/58,2,8\n",
+                encoding="utf-8",
+            )
+            (outputs / "odd_even_patterns_by_game.csv").write_text(
+                "lotto_game,odd_even_pattern,draws\nUltra Lotto 6/58,3 odd / 3 even,25\n",
+                encoding="utf-8",
+            )
+            (outputs / "sum_statistics_by_game.csv").write_text(
+                "lotto_game,count,min,median,mean,max,std\nUltra Lotto 6/58,30,80,150,151.5,220,20.4\n",
+                encoding="utf-8",
+            )
+
+            analysis = AnalysisService(root).analysis_for_game("Ultra Lotto 6/58")
+
+            self.assertEqual(analysis["lotto_game"], "Ultra Lotto 6/58")
+            self.assertEqual(analysis["number_frequency"][0]["number"], 1)
+            self.assertEqual(analysis["odd_even_patterns"][0]["pattern"], "3 odd / 3 even")
+            self.assertEqual(analysis["sum_statistics"]["median"], 150.0)
+
+    def test_lists_suggestions_from_csv(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outputs = root / "analysis_outputs"
+            outputs.mkdir()
+            (outputs / "possible_winning_numbers_by_game.csv").write_text(
+                "lotto_game,suggested_combination,sum,odd_even_pattern,historical_frequency_score,basis\n"
+                "Ultra Lotto 6/58,01-02-03-04-05-06,21,3 odd / 3 even,90,weighted\n",
+                encoding="utf-8",
+            )
+
+            suggestions = AnalysisService(root).list_suggestions()
+
+            self.assertEqual(suggestions[0]["suggested_combination"], "01-02-03-04-05-06")
+            self.assertEqual(suggestions[0]["historical_frequency_score"], 90)
