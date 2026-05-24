@@ -1,80 +1,69 @@
 lotto_game,odd_even_pattern,draws
-2D Lotto 2PM,1 odd / 1 even,1818
-2D Lotto 2PM,2 odd / 0 even,963
-2D Lotto 2PM,0 odd / 2 even,792
-2D Lotto 5PM,1 odd / 1 even,1746
-2D Lotto 5PM,2 odd / 0 even,959
-2D Lotto 5PM,0 odd / 2 even,867
-2D Lotto 9PM,1 odd / 1 even,1761
-2D Lotto 9PM,2 odd / 0 even,951
-2D Lotto 9PM,0 odd / 2 even,860
-3D Lotto 2PM,2 odd / 1 even,1330
-3D Lotto 2PM,1 odd / 2 even,1329
-3D Lotto 2PM,0 odd / 3 even,476
-3D Lotto 2PM,3 odd / 0 even,438
-3D Lotto 5PM,2 odd / 1 even,1347
-3D Lotto 5PM,1 odd / 2 even,1328
-3D Lotto 5PM,0 odd / 3 even,450
-3D Lotto 5PM,3 odd / 0 even,447
-3D Lotto 9PM,1 odd / 2 even,1339
-3D Lotto 9PM,2 odd / 1 even,1303
-3D Lotto 9PM,3 odd / 0 even,485
-3D Lotto 9PM,0 odd / 3 even,445
-4D Lotto,2 odd / 2 even,570
-4D Lotto,3 odd / 1 even,373
-4D Lotto,1 odd / 3 even,370
-4D Lotto,0 odd / 4 even,94
-4D Lotto,4 odd / 0 even,78
-6D Lotto,3 odd / 3 even,445
-6D Lotto,2 odd / 4 even,368
-6D Lotto,4 odd / 2 even,329
-6D Lotto,1 odd / 5 even,145
-6D Lotto,5 odd / 1 even,143
-6D Lotto,0 odd / 6 even,26
-6D Lotto,6 odd / 0 even,22
-EZ2 Lotto 11:30AM,0 odd / 2 even,2
-EZ2 Lotto 12:30PM,0 odd / 2 even,1
-EZ2 Lotto 12:30PM,2 odd / 0 even,1
-EZ2 Lotto 2PM,1 odd / 1 even,1
-EZ2 Lotto 2PM,2 odd / 0 even,1
-Grand Lotto 6/55,3 odd / 3 even,502
-Grand Lotto 6/55,4 odd / 2 even,409
-Grand Lotto 6/55,2 odd / 4 even,349
-Grand Lotto 6/55,5 odd / 1 even,148
-Grand Lotto 6/55,1 odd / 5 even,110
-Grand Lotto 6/55,0 odd / 6 even,17
-Grand Lotto 6/55,6 odd / 0 even,14
-Lotto 6/42,3 odd / 3 even,506
-Lotto 6/42,4 odd / 2 even,391
-Lotto 6/42,2 odd / 4 even,347
-Lotto 6/42,1 odd / 5 even,137
-Lotto 6/42,5 odd / 1 even,126
-Lotto 6/42,6 odd / 0 even,23
-Lotto 6/42,0 odd / 6 even,14
-Megalotto 6/45,3 odd / 3 even,507
-Megalotto 6/45,4 odd / 2 even,409
-Megalotto 6/45,2 odd / 4 even,349
-Megalotto 6/45,5 odd / 1 even,151
-Megalotto 6/45,1 odd / 5 even,107
-Megalotto 6/45,6 odd / 0 even,16
-Megalotto 6/45,0 odd / 6 even,10
-Suertres Lotto 11:30AM,0 odd / 3 even,1
-Suertres Lotto 11:30AM,3 odd / 0 even,1
-Suertres Lotto 12:30PM,1 odd / 2 even,1
-Suertres Lotto 12:30PM,2 odd / 1 even,1
-Suertres Lotto 2PM,0 odd / 3 even,1
-Suertres Lotto 2PM,1 odd / 2 even,1
-Superlotto 6/49,3 odd / 3 even,500
-Superlotto 6/49,4 odd / 2 even,410
-Superlotto 6/49,2 odd / 4 even,341
-Superlotto 6/49,5 odd / 1 even,141
-Superlotto 6/49,1 odd / 5 even,125
-Superlotto 6/49,6 odd / 0 even,16
-Superlotto 6/49,0 odd / 6 even,9
-Ultra Lotto 6/58,3 odd / 3 even,520
-Ultra Lotto 6/58,4 odd / 2 even,354
-Ultra Lotto 6/58,2 odd / 4 even,335
-Ultra Lotto 6/58,1 odd / 5 even,131
-Ultra Lotto 6/58,5 odd / 1 even,108
-Ultra Lotto 6/58,6 odd / 0 even,19
-Ultra Lotto 6/58,0 odd / 6 even,16
+2D Lotto 2PM,1 odd / 1 even,1077
+2D Lotto 2PM,2 odd / 0 even,581
+2D Lotto 2PM,0 odd / 2 even,493
+2D Lotto 5PM,1 odd / 1 even,1066
+2D Lotto 5PM,2 odd / 0 even,596
+2D Lotto 5PM,0 odd / 2 even,488
+2D Lotto 9PM,1 odd / 1 even,1047
+2D Lotto 9PM,2 odd / 0 even,584
+2D Lotto 9PM,0 odd / 2 even,519
+3D Lotto 2PM,1 odd / 2 even,806
+3D Lotto 2PM,2 odd / 1 even,774
+3D Lotto 2PM,0 odd / 3 even,300
+3D Lotto 2PM,3 odd / 0 even,271
+3D Lotto 5PM,1 odd / 2 even,824
+3D Lotto 5PM,2 odd / 1 even,778
+3D Lotto 5PM,3 odd / 0 even,276
+3D Lotto 5PM,0 odd / 3 even,272
+3D Lotto 9PM,1 odd / 2 even,816
+3D Lotto 9PM,2 odd / 1 even,788
+3D Lotto 9PM,3 odd / 0 even,296
+3D Lotto 9PM,0 odd / 3 even,250
+4D Lotto,2 odd / 2 even,341
+4D Lotto,1 odd / 3 even,219
+4D Lotto,3 odd / 1 even,213
+4D Lotto,0 odd / 4 even,54
+4D Lotto,4 odd / 0 even,45
+6D Lotto,3 odd / 3 even,265
+6D Lotto,2 odd / 4 even,211
+6D Lotto,4 odd / 2 even,194
+6D Lotto,5 odd / 1 even,90
+6D Lotto,1 odd / 5 even,77
+6D Lotto,0 odd / 6 even,18
+6D Lotto,6 odd / 0 even,13
+Grand Lotto 6/55,3 odd / 3 even,302
+Grand Lotto 6/55,4 odd / 2 even,250
+Grand Lotto 6/55,2 odd / 4 even,208
+Grand Lotto 6/55,5 odd / 1 even,93
+Grand Lotto 6/55,1 odd / 5 even,64
+Grand Lotto 6/55,0 odd / 6 even,10
+Grand Lotto 6/55,6 odd / 0 even,9
+Lotto 6/42,3 odd / 3 even,310
+Lotto 6/42,4 odd / 2 even,226
+Lotto 6/42,2 odd / 4 even,207
+Lotto 6/42,5 odd / 1 even,88
+Lotto 6/42,1 odd / 5 even,78
+Lotto 6/42,6 odd / 0 even,17
+Lotto 6/42,0 odd / 6 even,8
+Megalotto 6/45,3 odd / 3 even,307
+Megalotto 6/45,4 odd / 2 even,249
+Megalotto 6/45,2 odd / 4 even,207
+Megalotto 6/45,5 odd / 1 even,88
+Megalotto 6/45,1 odd / 5 even,68
+Megalotto 6/45,6 odd / 0 even,10
+Megalotto 6/45,0 odd / 6 even,7
+Superlotto 6/49,3 odd / 3 even,307
+Superlotto 6/49,4 odd / 2 even,234
+Superlotto 6/49,2 odd / 4 even,213
+Superlotto 6/49,5 odd / 1 even,86
+Superlotto 6/49,1 odd / 5 even,78
+Superlotto 6/49,6 odd / 0 even,11
+Superlotto 6/49,0 odd / 6 even,5
+Ultra Lotto 6/58,3 odd / 3 even,312
+Ultra Lotto 6/58,2 odd / 4 even,219
+Ultra Lotto 6/58,4 odd / 2 even,217
+Ultra Lotto 6/58,1 odd / 5 even,87
+Ultra Lotto 6/58,5 odd / 1 even,72
+Ultra Lotto 6/58,6 odd / 0 even,14
+Ultra Lotto 6/58,0 odd / 6 even,11
