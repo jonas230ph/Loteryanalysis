@@ -24,6 +24,12 @@ http://192.168.1.20:8080
 
 ## Xcode Setup
 
-Create a new iOS App project in Xcode named `PCSOLotto`, using SwiftUI and Swift. Add the files in this folder to the app target, preserving the `Models`, `Services`, `ViewModels`, and `Views` groups.
+Open this project in Xcode:
+
+```text
+PCSOLotto.xcodeproj
+```
+
+The project includes the app target and the SwiftUI files in this folder.
 
 The first app version expects the Python API to be running. Production API hosting and App Store submission are outside this first implementation.
