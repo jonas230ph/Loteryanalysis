@@ -25,6 +25,21 @@ struct SuggestionsView: View {
             }
         }
         .navigationTitle("Suggestions")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    Task {
+                        await viewModel.loadHome()
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .accessibilityLabel("Refresh suggestions")
+            }
+        }
+        .refreshable {
+            await viewModel.loadHome()
+        }
         .overlay {
             if viewModel.isLoading {
                 ProgressView("Loading")

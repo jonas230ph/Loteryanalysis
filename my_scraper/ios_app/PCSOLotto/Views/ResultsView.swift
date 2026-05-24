@@ -25,7 +25,22 @@ struct ResultsView: View {
             }
         }
         .navigationTitle("PCSO Results")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    Task {
+                        await viewModel.loadHome()
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .accessibilityLabel("Refresh results")
+            }
+        }
         .searchable(text: $query, prompt: "Search game")
+        .refreshable {
+            await viewModel.loadHome()
+        }
         .navigationDestination(for: String.self) { game in
             GameDetailView(game: game, viewModel: viewModel)
         }
