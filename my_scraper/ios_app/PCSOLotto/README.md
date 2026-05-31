@@ -49,6 +49,14 @@ The Results and Suggestions tabs support:
 
 Both actions refetch data from the running Python API.
 
+When the app is pointed at Railway, refresh first calls:
+
+```text
+POST /api/refresh
+```
+
+The Railway API runs the scraper/analysis pipeline and then the app reloads results and suggestions. No MacBook-local path is used.
+
 To update the underlying data before refreshing the app:
 
 ```bash

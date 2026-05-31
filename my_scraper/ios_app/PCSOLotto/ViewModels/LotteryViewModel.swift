@@ -17,12 +17,14 @@ final class LotteryViewModel: ObservableObject {
 
     func loadHome() async {
         await load {
-            async let fetchedResults = repository.fetchResults()
-            async let fetchedGames = repository.fetchGames()
-            async let fetchedSuggestions = repository.fetchSuggestions()
-            results = try await fetchedResults
-            games = try await fetchedGames
-            suggestions = try await fetchedSuggestions
+            try await loadHomeData()
+        }
+    }
+
+    func refreshHome() async {
+        await load {
+            try await repository.refreshData()
+            try await loadHomeData()
         }
     }
 
@@ -41,5 +43,14 @@ final class LotteryViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    private func loadHomeData() async throws {
+        async let fetchedResults = repository.fetchResults()
+        async let fetchedGames = repository.fetchGames()
+        async let fetchedSuggestions = repository.fetchSuggestions()
+        results = try await fetchedResults
+        games = try await fetchedGames
+        suggestions = try await fetchedSuggestions
     }
 }

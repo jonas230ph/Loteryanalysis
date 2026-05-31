@@ -38,6 +38,20 @@ final class APIClient {
             throw APIClientError.invalidResponse
         }
         let (data, response) = try await session.data(from: url)
+        return try decode(data: data, response: response)
+    }
+
+    func post<T: Decodable>(_ path: String) async throws -> T {
+        guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
+            throw APIClientError.invalidResponse
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let (data, response) = try await session.data(for: request)
+        return try decode(data: data, response: response)
+    }
+
+    private func decode<T: Decodable>(data: Data, response: URLResponse) throws -> T {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw APIClientError.invalidResponse
         }

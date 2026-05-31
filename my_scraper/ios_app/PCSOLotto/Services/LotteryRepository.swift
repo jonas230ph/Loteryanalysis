@@ -34,9 +34,17 @@ final class LotteryRepository {
         return response.suggestions
     }
 
+    func refreshData() async throws {
+        let _: RefreshResponse = try await client.post("api/refresh")
+    }
+
     private func encodedPathComponent(_ value: String) -> String {
         var allowed = CharacterSet.urlPathAllowed
         allowed.remove(charactersIn: "/")
         return value.addingPercentEncoding(withAllowedCharacters: allowed) ?? value
     }
+}
+
+struct RefreshResponse: Codable {
+    let status: String
 }

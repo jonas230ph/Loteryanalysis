@@ -12,7 +12,7 @@ class IOSRefreshSourceTests(unittest.TestCase):
         self.assertIn(".refreshable", source)
         self.assertIn("ToolbarItem", source)
         self.assertIn('Image(systemName: "arrow.clockwise")', source)
-        self.assertIn("await viewModel.loadHome()", source)
+        self.assertIn("await viewModel.refreshHome()", source)
 
     def test_suggestions_view_has_pull_to_refresh_and_toolbar_refresh_button(self):
         source = (PROJECT_ROOT / "ios_app/PCSOLotto/Views/SuggestionsView.swift").read_text(encoding="utf-8")
@@ -20,4 +20,4 @@ class IOSRefreshSourceTests(unittest.TestCase):
         self.assertIn(".refreshable", source)
         self.assertIn("ToolbarItem", source)
         self.assertIn('Image(systemName: "arrow.clockwise")', source)
-        self.assertIn("await viewModel.loadHome()", source)
+        self.assertIn("await viewModel.refreshHome()", source)

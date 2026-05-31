@@ -29,7 +29,7 @@ struct SuggestionsView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     Task {
-                        await viewModel.loadHome()
+                        await viewModel.refreshHome()
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -38,7 +38,7 @@ struct SuggestionsView: View {
             }
         }
         .refreshable {
-            await viewModel.loadHome()
+            await viewModel.refreshHome()
         }
         .overlay {
             if viewModel.isLoading {

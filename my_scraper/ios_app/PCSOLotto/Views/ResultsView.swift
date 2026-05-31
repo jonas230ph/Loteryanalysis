@@ -29,7 +29,7 @@ struct ResultsView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     Task {
-                        await viewModel.loadHome()
+                        await viewModel.refreshHome()
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -39,7 +39,7 @@ struct ResultsView: View {
         }
         .searchable(text: $query, prompt: "Search game")
         .refreshable {
-            await viewModel.loadHome()
+            await viewModel.refreshHome()
         }
         .navigationDestination(for: String.self) { game in
             GameDetailView(game: game, viewModel: viewModel)

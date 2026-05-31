@@ -1,5 +1,7 @@
 import json
 import os
+import subprocess
+import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -15,13 +17,17 @@ class MobileAPI:
         self.analysis_service = AnalysisService(self.project_root)
 
     def handle_request(self, method, raw_path):
-        if method not in {"GET", "HEAD"}:
+        if method not in {"GET", "HEAD", "POST"}:
             return self._json(405, {"error": "Method not allowed"})
 
         path = urlparse(raw_path).path
         try:
             if path == "/api/health":
                 return self._json(200, {"status": "ok"})
+            if method == "POST" and path == "/api/refresh":
+                return self._refresh()
+            if method != "GET":
+                return self._json(405, {"error": "Method not allowed"})
             if path == "/api/results":
                 return self._json(200, {"results": self.results_service.list_results()})
             if path == "/api/games":
@@ -51,6 +57,29 @@ class MobileAPI:
     def _json(self, status, payload):
         return status, json.dumps(payload, ensure_ascii=False)
 
+    def _refresh(self):
+        env = os.environ.copy()
+        env["SYNCHRONIZE_CMD"] = os.getenv("SYNCHRONIZE_CMD", "true")
+        timeout = int(os.getenv("REFRESH_TIMEOUT_SECONDS", "900"))
+        command = [sys.executable, "scripts/auto_pipeline.py"]
+        try:
+            result = subprocess.run(
+                command,
+                cwd=self.project_root,
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+            )
+        except subprocess.TimeoutExpired:
+            return self._json(504, {"error": "Refresh pipeline timed out"})
+        if result.returncode != 0:
+            return self._json(500, {
+                "error": "Refresh pipeline failed",
+                "details": (result.stderr or result.stdout).strip(),
+            })
+        return self._json(200, {"status": "refreshed"})
+
 
 def create_app(project_root=None):
     return MobileAPI(project_root or Path(__file__).resolve().parents[1])
@@ -74,6 +103,10 @@ def run(host=None, port=None, project_root=None):
         def do_HEAD(self):
             status, body = app.handle_request("HEAD", self.path)
             self._send_json(status, body, include_body=False)
+
+        def do_POST(self):
+            status, body = app.handle_request("POST", self.path)
+            self._send_json(status, body, include_body=True)
 
         def _send_json(self, status, body, include_body):
             encoded = body.encode("utf-8")

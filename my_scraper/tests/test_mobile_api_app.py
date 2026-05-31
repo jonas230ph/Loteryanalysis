@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -56,6 +57,61 @@ class MobileAPITests(unittest.TestCase):
     def test_runtime_config_uses_railway_port(self):
         with patch.dict(os.environ, {"HOST": "0.0.0.0", "PORT": "4321"}):
             self.assertEqual(runtime_config(), ("0.0.0.0", 4321))
+
+    def test_refresh_route_runs_pipeline_from_project_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            app = create_app(root)
+
+            with patch("mobile_api.app.subprocess.run") as run:
+                run.return_value = subprocess.CompletedProcess(
+                    args=["python", "scripts/auto_pipeline.py"],
+                    returncode=0,
+                    stdout="pipeline ok",
+                    stderr="",
+                )
+
+                status, body = app.handle_request("POST", "/api/refresh")
+
+            self.assertEqual(status, 200)
+            self.assertEqual(json.loads(body)["status"], "refreshed")
+            command = run.call_args.args[0]
+            kwargs = run.call_args.kwargs
+            self.assertEqual(command[-1], "scripts/auto_pipeline.py")
+            self.assertEqual(kwargs["cwd"], root)
+            self.assertEqual(kwargs["env"]["SYNCHRONIZE_CMD"], "true")
+
+    def test_refresh_route_returns_500_when_pipeline_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            app = create_app(Path(tmp))
+
+            with patch("mobile_api.app.subprocess.run") as run:
+                run.return_value = subprocess.CompletedProcess(
+                    args=["python", "scripts/auto_pipeline.py"],
+                    returncode=1,
+                    stdout="",
+                    stderr="pipeline failed",
+                )
+
+                status, body = app.handle_request("POST", "/api/refresh")
+
+            self.assertEqual(status, 500)
+            self.assertEqual(json.loads(body)["error"], "Refresh pipeline failed")
+
+    def test_refresh_route_returns_504_when_pipeline_times_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            app = create_app(Path(tmp))
+
+            with patch("mobile_api.app.subprocess.run") as run:
+                run.side_effect = subprocess.TimeoutExpired(
+                    cmd=["python", "scripts/auto_pipeline.py"],
+                    timeout=900,
+                )
+
+                status, body = app.handle_request("POST", "/api/refresh")
+
+            self.assertEqual(status, 504)
+            self.assertEqual(json.loads(body)["error"], "Refresh pipeline timed out")
 
     def _write_fixture(self, root):
         (root / "pcso_results.json").write_text(json.dumps([

@@ -245,6 +245,7 @@ The API binds to Railway's injected `PORT` on `0.0.0.0` and exposes:
 
 ```text
 /api/health
+/api/refresh
 ```
 
 Deploy from GitHub in Railway:
@@ -256,6 +257,16 @@ Deploy from GitHub in Railway:
 5. Generate a public domain for the service.
 6. Confirm `/api/health` returns `{"status": "ok"}`.
 7. Replace the iOS app base URL in `ios_app/PCSOLotto/Services/APIClient.swift` with the Railway public URL.
+
+The iOS app's pull-to-refresh and refresh toolbar button call `POST /api/refresh`.
+That endpoint runs:
+
+```bash
+SYNCHRONIZE_CMD=true python scripts/auto_pipeline.py
+```
+
+on Railway, then the app reloads the latest results and suggestions. The refresh
+uses Railway's deployed filesystem, not the Mac path under `/Users/...`.
 - `scripts/auto_pipeline.py` - Python implementation.
 
 Both scripts run the same pipeline:
