@@ -15,7 +15,7 @@ class MobileAPI:
         self.analysis_service = AnalysisService(self.project_root)
 
     def handle_request(self, method, raw_path):
-        if method != "GET":
+        if method not in {"GET", "HEAD"}:
             return self._json(405, {"error": "Method not allowed"})
 
         path = urlparse(raw_path).path
@@ -69,12 +69,20 @@ def run(host=None, port=None, project_root=None):
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self):
             status, body = app.handle_request("GET", self.path)
+            self._send_json(status, body, include_body=True)
+
+        def do_HEAD(self):
+            status, body = app.handle_request("HEAD", self.path)
+            self._send_json(status, body, include_body=False)
+
+        def _send_json(self, status, body, include_body):
             encoded = body.encode("utf-8")
             self.send_response(status)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(encoded)))
             self.end_headers()
-            self.wfile.write(encoded)
+            if include_body:
+                self.wfile.write(encoded)
 
         def log_message(self, format, *args):
             return

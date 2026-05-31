@@ -23,7 +23,7 @@ final class APIClient {
     private let session: URLSession
     private let decoder: JSONDecoder
 
-    init(baseURL: URL = URL(string: "http://192.168.254.105:8080")!, session: URLSession = .shared) {
+    init(baseURL: URL = URL(string: "https://loteryanalysis-production.up.railway.app")!, session: URLSession = .shared) {
         if baseURL.absoluteString.hasSuffix("/") {
             self.baseURL = baseURL
         } else {
