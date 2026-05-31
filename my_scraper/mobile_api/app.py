@@ -1,4 +1,5 @@
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -19,6 +20,8 @@ class MobileAPI:
 
         path = urlparse(raw_path).path
         try:
+            if path == "/api/health":
+                return self._json(200, {"status": "ok"})
             if path == "/api/results":
                 return self._json(200, {"results": self.results_service.list_results()})
             if path == "/api/games":
@@ -53,7 +56,14 @@ def create_app(project_root=None):
     return MobileAPI(project_root or Path(__file__).resolve().parents[1])
 
 
-def run(host="127.0.0.1", port=8080, project_root=None):
+def runtime_config():
+    return os.getenv("HOST", "0.0.0.0"), int(os.getenv("PORT", "8080"))
+
+
+def run(host=None, port=None, project_root=None):
+    default_host, default_port = runtime_config()
+    host = host or default_host
+    port = port or default_port
     app = create_app(project_root)
 
     class Handler(BaseHTTPRequestHandler):

@@ -233,6 +233,29 @@ Start the local mobile API:
 ```
 
 Then point the SwiftUI app to `http://127.0.0.1:8080` in the simulator, or to the Mac's LAN IP address when testing on a physical iPhone.
+
+## Deploy Mobile API On Railway
+
+Railway deployment config lives at the repository root:
+
+- `railway.toml`
+- `requirements.txt`
+
+The API binds to Railway's injected `PORT` on `0.0.0.0` and exposes:
+
+```text
+/api/health
+```
+
+Deploy from GitHub in Railway:
+
+1. Create a Railway project.
+2. Choose **Deploy from GitHub repo**.
+3. Select this repository and branch.
+4. Let Railway use the committed `railway.toml`.
+5. Generate a public domain for the service.
+6. Confirm `/api/health` returns `{"status": "ok"}`.
+7. Replace the iOS app base URL in `ios_app/PCSOLotto/Services/APIClient.swift` with the Railway public URL.
 - `scripts/auto_pipeline.py` - Python implementation.
 
 Both scripts run the same pipeline:
