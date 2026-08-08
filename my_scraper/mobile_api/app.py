@@ -125,7 +125,7 @@ def create_app(project_root=None):
 
 
 def build_snapshot_store(project_root):
-    # Koyeb receives these values as environment variables. Missing values
+    # Render receives these values as environment variables. Missing values
     # intentionally select files so local API commands need no cloud setup.
     project_url = os.getenv("SUPABASE_URL")
     publishable_key = os.getenv("SUPABASE_PUBLISHABLE_KEY")
@@ -145,7 +145,7 @@ def empty_analysis(game):
 
 
 def runtime_config():
-    # Koyeb exposes this port. HOST defaults to all interfaces for container use.
+    # Render supplies PORT at runtime. HOST defaults to all interfaces for containers.
     return os.getenv("HOST", "0.0.0.0"), int(os.getenv("PORT", "8080"))
 
 
@@ -181,7 +181,7 @@ def run(host=None, port=None, project_root=None):
                 self.wfile.write(encoded)
 
         def log_message(self, format, *args):
-            # Silence default request logging so Koyeb logs focus on pipeline
+            # Silence default request logging so Render logs focus on pipeline
             # output and real errors.
             return
 

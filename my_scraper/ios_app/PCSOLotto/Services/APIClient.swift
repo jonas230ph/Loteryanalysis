@@ -20,14 +20,14 @@ struct APIErrorResponse: Codable {
     let error: String
 }
 
-// Thin networking wrapper for the Koyeb-hosted PCSO mobile API.
+// Thin networking wrapper for the Render-hosted PCSO mobile API.
 final class APIClient {
     let baseURL: URL
     private let session: URLSession
     private let decoder: JSONDecoder
 
     init(baseURL: URL? = nil, session: URLSession = .shared) {
-        // API_BASE_URL is set once in the Xcode build settings after Koyeb
+        // API_BASE_URL is set once in the Xcode build settings after Render
         // deploys. It keeps a physical iPhone independent of the MacBook LAN.
         let configuredURL = Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String
         let resolvedURL = baseURL ?? URL(string: configuredURL ?? "") ?? URL(string: "https://example.invalid")!
@@ -43,7 +43,7 @@ final class APIClient {
     }
 
     func get<T: Decodable>(_ path: String) async throws -> T {
-        // GET routes load the current published data from Koyeb.
+        // GET routes load the current published data from Render.
         guard let url = URL(string: path, relativeTo: baseURL)?.absoluteURL else {
             throw APIClientError.invalidResponse
         }

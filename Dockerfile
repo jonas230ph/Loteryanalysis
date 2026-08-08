@@ -1,4 +1,4 @@
-# Koyeb only serves the already-prepared Supabase snapshot, so the image
+# Render only serves the already-prepared Supabase snapshot, so the image
 # contains the lightweight standard-library mobile API rather than the scraper.
 FROM python:3.12-slim
 

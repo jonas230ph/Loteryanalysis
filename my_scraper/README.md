@@ -233,18 +233,18 @@ Start the local mobile API:
 ```
 
 Then point a simulator-only debug build at `http://127.0.0.1:8080`. A physical
-iPhone uses the Koyeb HTTPS URL described below.
+iPhone uses the Render HTTPS URL described below.
 
-## Deploy Mobile API With Koyeb and Supabase
+## Deploy Mobile API With Render and Supabase
 
 The hosted system has three separate jobs:
 
 ```text
-iPhone -> Koyeb API -> Supabase current snapshot
+iPhone -> Render API -> Supabase current snapshot
 GitHub Actions -> scraper + analyzer -> Supabase current snapshot
 ```
 
-Koyeb exposes the public API and never stores lottery files locally. GitHub
+Render exposes the public API and never stores lottery files locally. GitHub
 Actions runs the Python scraper each day at 22:30 Asia/Manila and publishes a
 complete replacement snapshot only after the scraper and analyzer finish.
 
@@ -273,43 +273,34 @@ The `Refresh PCSO Lottery Data` workflow can then be run manually from the
 Actions tab or will run daily. It uses `SYNCHRONIZE_CMD=true` and does not need
 the MacBook to be running.
 
-### 3. Deploy the API on Koyeb
+### 3. Deploy the API on Render
 
-In the Koyeb control panel, create a **Web Service** from GitHub using this
-repository and the `main` branch. Choose the **Dockerfile** builder with the
-root `Dockerfile`, select the free instance when available, and configure an
-HTTP exposed port of `8080`. Set the HTTP health check path to `/api/health`.
-Koyeb automatically rebuilds and redeploys the service after later pushes to
-`main`, so no separate deploy workflow is needed in GitHub Actions.
+The root `render.yaml` is a Render Blueprint. In the Render dashboard, select
+**New > Blueprint**, connect this GitHub repository, choose `render.yaml`, and
+approve the `pcso-mobile-api` web service. It builds the root `Dockerfile`,
+uses the `main` branch, sets the `/api/health` check, and auto-deploys future
+commits to `main`. Select the free instance when prompted.
 
-Create these Koyeb secrets, then reference each from the corresponding service
-environment variable. Keep their values out of source control and chat:
-
-| Koyeb secret | Service environment variable | Value |
-| --- | --- | --- |
-| `pcso-github-refresh-token` | `GITHUB_REFRESH_TOKEN` | Fine-grained GitHub token with **Actions: Read and write** access to this repository |
-| `pcso-refresh-request-key` | `REFRESH_REQUEST_KEY` | New long random value used only by your installed iPhone app |
-
-Add these plain service environment variables:
+Render will ask for these secret environment variables. Enter them only in the
+Render dashboard, never in source control or chat:
 
 | Name | Value |
 | --- | --- |
 | `SUPABASE_URL` | Your `https://<project>.supabase.co` URL |
 | `SUPABASE_PUBLISHABLE_KEY` | Your Supabase publishable/anon key |
-| `GITHUB_REPOSITORY` | `jonas230ph/Loteryanalysis` |
-| `GITHUB_REFRESH_WORKFLOW` | `refresh-lottery-data.yml` |
-| `GITHUB_REFRESH_REF` | `main` |
+| `GITHUB_REFRESH_TOKEN` | Fine-grained GitHub token with **Actions: Read and write** access to this repository |
+| `REFRESH_REQUEST_KEY` | New long random value used only by your installed iPhone app |
 
-After Koyeb marks the deployment healthy, copy its public `https://...koyeb.app`
-URL and open `<API URL>/api/health`. It must return `{"status": "ok"}`. A Koyeb
-free web service can scale to zero after idle time, so the first iPhone request
-after a quiet period can take longer.
+After Render marks the deployment live, copy its public
+`https://...onrender.com` URL and open `<API URL>/api/health`. It must return
+`{"status": "ok"}`. Render's free web service sleeps after 15 idle minutes,
+so the first iPhone request after a quiet period can take about a minute.
 
-### 4. Point the iPhone app to Koyeb
+### 4. Point the iPhone app to Render
 
 In Xcode, select the PCSOLotto target, open **Build Settings**, and replace both
-placeholders: `API_BASE_URL` with the Koyeb URL and `REFRESH_REQUEST_KEY` with
-the same value stored in the Koyeb secret. Do not add a port number. Rebuild and
+placeholders: `API_BASE_URL` with the Render URL and `REFRESH_REQUEST_KEY` with
+the same value stored in the Render environment. Do not add a port number. Rebuild and
 install the app on the iPhone.
 
 Pull-to-refresh starts the GitHub Actions workflow and immediately reloads the

@@ -42,7 +42,7 @@ final class LotteryRepository {
     }
 
     func refreshData() async throws -> RefreshResponse {
-        // Koyeb starts the GitHub Actions job. The current snapshot remains
+        // Render starts the GitHub Actions job. The current snapshot remains
         // readable while its next version is being scraped and analyzed.
         guard let refreshKey = Bundle.main.object(forInfoDictionaryKey: "REFRESH_REQUEST_KEY") as? String,
               !refreshKey.isEmpty,
