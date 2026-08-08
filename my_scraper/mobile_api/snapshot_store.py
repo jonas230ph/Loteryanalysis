@@ -46,7 +46,7 @@ class SupabaseSnapshotStore:
         self.opener = opener
 
     def load(self):
-        # The Cloud Run API only needs public read access to this prepared JSON
+        # The Koyeb API only needs public read access to this prepared JSON
         # document. The service-role key is never used on the request path.
         request = Request(
             f"{self.project_url}/rest/v1/mobile_snapshots?id=eq.current&select=payload",

@@ -14,10 +14,10 @@ from mobile_api.snapshot_store import (
 
 
 class MobileAPI:
-    """Small HTTP API used by the iPhone app and Cloud Run deployment."""
+    """Small HTTP API used by the iPhone app and its hosted deployment."""
 
     def __init__(self, project_root, snapshot_store=None):
-        # Local development uses generated files. Cloud Run reads the published
+        # Local development uses generated files. The hosted API reads the published
         # Supabase snapshot because a container filesystem is ephemeral.
         self.project_root = Path(project_root)
         self.snapshot_store = snapshot_store or build_snapshot_store(self.project_root)
@@ -33,7 +33,7 @@ class MobileAPI:
                 return self._json(200, {"status": "ok"})
             if method == "POST" and path == "/api/refresh":
                 # Pull-to-refresh starts the GitHub workflow. It returns quickly
-                # because Cloud Run is only the API, not the scraper worker.
+                # because this service is only the API, not the scraper worker.
                 return self._refresh(headers or {})
             if method != "GET":
                 return self._json(405, {"error": "Method not allowed"})
@@ -83,7 +83,7 @@ class MobileAPI:
 
     def _refresh(self, headers):
         # GitHub Actions has a durable workspace for the Python pipeline. A
-        # fine-grained token is held in Cloud Run's Secret Manager binding.
+        # fine-grained token is held only in the host's secret configuration.
         token = os.getenv("GITHUB_REFRESH_TOKEN")
         repository = os.getenv("GITHUB_REPOSITORY")
         workflow = os.getenv("GITHUB_REFRESH_WORKFLOW", "refresh-lottery-data.yml")
@@ -125,7 +125,7 @@ def create_app(project_root=None):
 
 
 def build_snapshot_store(project_root):
-    # Cloud Run receives these values as environment variables. Missing values
+    # Koyeb receives these values as environment variables. Missing values
     # intentionally select files so local API commands need no cloud setup.
     project_url = os.getenv("SUPABASE_URL")
     publishable_key = os.getenv("SUPABASE_PUBLISHABLE_KEY")
@@ -145,7 +145,7 @@ def empty_analysis(game):
 
 
 def runtime_config():
-    # Cloud Run provides PORT. HOST defaults to all interfaces for container use.
+    # Koyeb exposes this port. HOST defaults to all interfaces for container use.
     return os.getenv("HOST", "0.0.0.0"), int(os.getenv("PORT", "8080"))
 
 
@@ -181,7 +181,7 @@ def run(host=None, port=None, project_root=None):
                 self.wfile.write(encoded)
 
         def log_message(self, format, *args):
-            # Silence default request logging so Cloud Run logs focus on pipeline
+            # Silence default request logging so Koyeb logs focus on pipeline
             # output and real errors.
             return
 

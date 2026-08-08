@@ -53,7 +53,7 @@ class MobileAPITests(unittest.TestCase):
             self.assertEqual(status, 200)
             self.assertEqual(json.loads(body), {"status": "ok"})
 
-    def test_runtime_config_uses_cloud_run_port(self):
+    def test_runtime_config_uses_hosted_service_port(self):
         with patch.dict(os.environ, {"HOST": "0.0.0.0", "PORT": "4321"}):
             self.assertEqual(runtime_config(), ("0.0.0.0", 4321))
 

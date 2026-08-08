@@ -233,18 +233,18 @@ Start the local mobile API:
 ```
 
 Then point a simulator-only debug build at `http://127.0.0.1:8080`. A physical
-iPhone uses the Cloud Run HTTPS URL described below.
+iPhone uses the Koyeb HTTPS URL described below.
 
-## Deploy Mobile API With Cloud Run and Supabase
+## Deploy Mobile API With Koyeb and Supabase
 
 The hosted system has three separate jobs:
 
 ```text
-iPhone -> Cloud Run API -> Supabase current snapshot
+iPhone -> Koyeb API -> Supabase current snapshot
 GitHub Actions -> scraper + analyzer -> Supabase current snapshot
 ```
 
-Cloud Run exposes the public API and never stores lottery files locally. GitHub
+Koyeb exposes the public API and never stores lottery files locally. GitHub
 Actions runs the Python scraper each day at 22:30 Asia/Manila and publishes a
 complete replacement snapshot only after the scraper and analyzer finish.
 
@@ -273,42 +273,44 @@ The `Refresh PCSO Lottery Data` workflow can then be run manually from the
 Actions tab or will run daily. It uses `SYNCHRONIZE_CMD=true` and does not need
 the MacBook to be running.
 
-### 3. Configure Cloud Run deploy access
+### 3. Deploy the API on Koyeb
 
-In Google Cloud, create a project, enable **Cloud Run**, **Cloud Build**,
-**Artifact Registry**, **Secret Manager**, and **IAM Credentials** APIs. Configure
-GitHub Actions Workload Identity Federation for a deployment service account with
-Cloud Run Admin, Service Account User, Cloud Build Editor, and Artifact Registry
-Writer access. This avoids saving a Google Cloud key in GitHub.
+In the Koyeb control panel, create a **Web Service** from GitHub using this
+repository and the `main` branch. Choose the **Dockerfile** builder with the
+root `Dockerfile`, select the free instance when available, and configure an
+HTTP exposed port of `8080`. Set the HTTP health check path to `/api/health`.
+Koyeb automatically rebuilds and redeploys the service after later pushes to
+`main`, so no separate deploy workflow is needed in GitHub Actions.
 
-Create these Secret Manager entries and grant the Cloud Run runtime service
-account `Secret Manager Secret Accessor` for both:
+Create these Koyeb secrets, then reference each from the corresponding service
+environment variable. Keep their values out of source control and chat:
 
-| Secret Manager name | Value |
+| Koyeb secret | Service environment variable | Value |
+| --- | --- | --- |
+| `pcso-github-refresh-token` | `GITHUB_REFRESH_TOKEN` | Fine-grained GitHub token with **Actions: Read and write** access to this repository |
+| `pcso-refresh-request-key` | `REFRESH_REQUEST_KEY` | New long random value used only by your installed iPhone app |
+
+Add these plain service environment variables:
+
+| Name | Value |
 | --- | --- |
-| `pcso-supabase-publishable-key` | Supabase publishable/anon key |
-| `pcso-github-refresh-token` | Fine-grained GitHub token with Actions workflow write access for this repository |
-| `pcso-refresh-request-key` | A new long random value used only by your installed iPhone app |
+| `SUPABASE_URL` | Your `https://<project>.supabase.co` URL |
+| `SUPABASE_PUBLISHABLE_KEY` | Your Supabase publishable/anon key |
+| `GITHUB_REPOSITORY` | `jonas230ph/Loteryanalysis` |
+| `GITHUB_REFRESH_WORKFLOW` | `refresh-lottery-data.yml` |
+| `GITHUB_REFRESH_REF` | `main` |
 
-Add these GitHub repository variables:
+After Koyeb marks the deployment healthy, copy its public `https://...koyeb.app`
+URL and open `<API URL>/api/health`. It must return `{"status": "ok"}`. A Koyeb
+free web service can scale to zero after idle time, so the first iPhone request
+after a quiet period can take longer.
 
-| Name | Example |
-| --- | --- |
-| `GCP_REGION` | `asia-southeast1` |
-| `GCP_WORKLOAD_IDENTITY_PROVIDER` | Full Workload Identity Provider resource name |
-| `GCP_DEPLOYER_SERVICE_ACCOUNT` | Deployment service-account email |
-| `SUPABASE_URL` | Your Supabase project URL |
-
-Run **Deploy PCSO API to Cloud Run** from the Actions tab. Its final log line
-contains the public `https://...run.app` API URL. Open `<API URL>/api/health` and
-confirm it returns `{"status": "ok"}`.
-
-### 4. Point the iPhone app to Cloud Run
+### 4. Point the iPhone app to Koyeb
 
 In Xcode, select the PCSOLotto target, open **Build Settings**, and replace both
-placeholders: `API_BASE_URL` with the Cloud Run URL and `REFRESH_REQUEST_KEY`
-with the same value stored as `pcso-refresh-request-key`. Do not add a port
-number. Rebuild and install the app on the iPhone.
+placeholders: `API_BASE_URL` with the Koyeb URL and `REFRESH_REQUEST_KEY` with
+the same value stored in the Koyeb secret. Do not add a port number. Rebuild and
+install the app on the iPhone.
 
 Pull-to-refresh starts the GitHub Actions workflow and immediately reloads the
 last published data. The app displays a message while the new snapshot is being

@@ -19,7 +19,7 @@ final class LotteryViewModel: ObservableObject {
     }
 
     func loadHome() async {
-        // Initial load reads the latest snapshot from Cloud Run.
+        // Initial load reads the latest snapshot from Koyeb.
         await load {
             try await loadHomeData()
         }
