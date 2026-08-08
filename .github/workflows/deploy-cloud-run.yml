@@ -1,0 +1,47 @@
+name: Deploy PCSO API to Cloud Run
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - .github/workflows/deploy-cloud-run.yml
+      - my_scraper/mobile_api/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  CLOUD_RUN_SERVICE: pcso-mobile-api
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Workload Identity Federation avoids storing a long-lived Google Cloud
+      # key in GitHub. Configure the provider and service account as repo vars.
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOYER_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy API
+        run: |
+          gcloud run deploy "$CLOUD_RUN_SERVICE" \
+            --source . \
+            --region "${{ vars.GCP_REGION }}" \
+            --allow-unauthenticated \
+            --set-env-vars "SUPABASE_URL=${{ vars.SUPABASE_URL }},GITHUB_REPOSITORY=${{ github.repository }},GITHUB_REFRESH_WORKFLOW=refresh-lottery-data.yml,GITHUB_REFRESH_REF=${{ github.ref_name }}" \
+            --set-secrets "SUPABASE_PUBLISHABLE_KEY=pcso-supabase-publishable-key:latest,GITHUB_REFRESH_TOKEN=pcso-github-refresh-token:latest,REFRESH_REQUEST_KEY=pcso-refresh-request-key:latest"
+
+      - name: Show deployed URL
+        run: |
+          gcloud run services describe "$CLOUD_RUN_SERVICE" \
+            --region "${{ vars.GCP_REGION }}" \
+            --format='value(status.url)'

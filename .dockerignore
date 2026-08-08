@@ -1,0 +1,11 @@
+.git
+.DS_Store
+.codex-work
+ExtensionPlugin
+outputs
+my_scraper/.DS_Store
+my_scraper/analysis_outputs
+my_scraper/ios_app
+my_scraper/logs
+my_scraper/pcso_results.json
+my_scraper/tests

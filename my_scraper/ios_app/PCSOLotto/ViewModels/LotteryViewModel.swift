@@ -1,13 +1,16 @@
 import SwiftUI
 
+// Shared screen state for the Results, Suggestions, and Analysis views.
 @MainActor
 final class LotteryViewModel: ObservableObject {
+    // Published properties automatically update SwiftUI when network data changes.
     @Published var results: [LottoResult] = []
     @Published var games: [String] = []
     @Published var suggestions: [Suggestion] = []
     @Published var selectedAnalysis: GameAnalysis?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var refreshMessage: String?
 
     private let repository: LotteryRepository
 
@@ -16,25 +19,31 @@ final class LotteryViewModel: ObservableObject {
     }
 
     func loadHome() async {
+        // Initial load reads the latest snapshot from Cloud Run.
         await load {
             try await loadHomeData()
         }
     }
 
     func refreshHome() async {
+        // Pull-to-refresh starts the remote job, then keeps the visible data
+        // current until GitHub Actions finishes publishing the next snapshot.
         await load {
-            try await repository.refreshData()
+            let response = try await repository.refreshData()
             try await loadHomeData()
+            refreshMessage = response.message
         }
     }
 
     func loadAnalysis(for game: String) async {
+        // Analysis is separate so normal app launch stays fast.
         await load {
             selectedAnalysis = try await repository.fetchAnalysis(for: game)
         }
     }
 
     private func load(_ operation: () async throws -> Void) async {
+        // One loading helper keeps the spinner and error handling consistent.
         isLoading = true
         errorMessage = nil
         do {
@@ -46,6 +55,7 @@ final class LotteryViewModel: ObservableObject {
     }
 
     private func loadHomeData() async throws {
+        // Fetch independent home data in parallel to reduce wait time.
         async let fetchedResults = repository.fetchResults()
         async let fetchedGames = repository.fetchGames()
         async let fetchedSuggestions = repository.fetchSuggestions()

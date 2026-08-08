@@ -1,6 +1,5 @@
 import json
 import os
-import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -54,64 +53,77 @@ class MobileAPITests(unittest.TestCase):
             self.assertEqual(status, 200)
             self.assertEqual(json.loads(body), {"status": "ok"})
 
-    def test_runtime_config_uses_railway_port(self):
+    def test_runtime_config_uses_cloud_run_port(self):
         with patch.dict(os.environ, {"HOST": "0.0.0.0", "PORT": "4321"}):
             self.assertEqual(runtime_config(), ("0.0.0.0", 4321))
 
-    def test_refresh_route_runs_pipeline_from_project_root(self):
+    def test_refresh_route_dispatches_the_remote_workflow(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             app = create_app(root)
 
-            with patch("mobile_api.app.subprocess.run") as run:
-                run.return_value = subprocess.CompletedProcess(
-                    args=["python", "scripts/auto_pipeline.py"],
-                    returncode=0,
-                    stdout="pipeline ok",
-                    stderr="",
+            with patch.dict(os.environ, {
+                "GITHUB_REFRESH_TOKEN": "token",
+                "GITHUB_REPOSITORY": "jonas230ph/Loteryanalysis",
+                "REFRESH_REQUEST_KEY": "phone-key",
+            }), patch("mobile_api.app.urlopen") as open_request:
+                status, body = app.handle_request(
+                    "POST",
+                    "/api/refresh",
+                    {"X-PCSO-Refresh-Key": "phone-key"},
                 )
 
-                status, body = app.handle_request("POST", "/api/refresh")
+            self.assertEqual(status, 202)
+            self.assertEqual(json.loads(body)["status"], "refresh_started")
+            request = open_request.call_args.args[0]
+            self.assertEqual(
+                request.full_url,
+                "https://api.github.com/repos/jonas230ph/Loteryanalysis/actions/workflows/refresh-lottery-data.yml/dispatches",
+            )
+            self.assertEqual(json.loads(request.data), {"ref": "main"})
 
-            self.assertEqual(status, 200)
-            self.assertEqual(json.loads(body)["status"], "refreshed")
-            command = run.call_args.args[0]
-            kwargs = run.call_args.kwargs
-            self.assertEqual(command[-1], "scripts/auto_pipeline.py")
-            self.assertEqual(kwargs["cwd"], root)
-            self.assertEqual(kwargs["env"]["SYNCHRONIZE_CMD"], "true")
-
-    def test_refresh_route_returns_500_when_pipeline_fails(self):
+    def test_refresh_route_rejects_a_request_without_the_phone_key(self):
         with tempfile.TemporaryDirectory() as tmp:
             app = create_app(Path(tmp))
 
-            with patch("mobile_api.app.subprocess.run") as run:
-                run.return_value = subprocess.CompletedProcess(
-                    args=["python", "scripts/auto_pipeline.py"],
-                    returncode=1,
-                    stdout="",
-                    stderr="pipeline failed",
-                )
-
+            with patch.dict(os.environ, {
+                "GITHUB_REFRESH_TOKEN": "token",
+                "GITHUB_REPOSITORY": "jonas230ph/Loteryanalysis",
+                "REFRESH_REQUEST_KEY": "phone-key",
+            }), patch("mobile_api.app.urlopen") as open_request:
                 status, body = app.handle_request("POST", "/api/refresh")
 
-            self.assertEqual(status, 500)
-            self.assertEqual(json.loads(body)["error"], "Refresh pipeline failed")
+            self.assertEqual(status, 401)
+            self.assertEqual(json.loads(body)["error"], "Refresh request is not authorized")
+            open_request.assert_not_called()
 
-    def test_refresh_route_returns_504_when_pipeline_times_out(self):
+    def test_refresh_route_returns_502_when_workflow_dispatch_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
             app = create_app(Path(tmp))
 
-            with patch("mobile_api.app.subprocess.run") as run:
-                run.side_effect = subprocess.TimeoutExpired(
-                    cmd=["python", "scripts/auto_pipeline.py"],
-                    timeout=900,
+            with patch.dict(os.environ, {
+                "GITHUB_REFRESH_TOKEN": "token",
+                "GITHUB_REPOSITORY": "jonas230ph/Loteryanalysis",
+                "REFRESH_REQUEST_KEY": "phone-key",
+            }), patch("mobile_api.app.urlopen", side_effect=OSError):
+                status, body = app.handle_request(
+                    "POST",
+                    "/api/refresh",
+                    {"X-PCSO-Refresh-Key": "phone-key"},
                 )
 
+            self.assertEqual(status, 502)
+            self.assertEqual(json.loads(body)["error"], "Unable to start the remote refresh")
+
+    def test_refresh_route_requires_remote_workflow_settings(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            app = create_app(Path(tmp))
+
+            with patch.dict(os.environ, {}, clear=True):
                 status, body = app.handle_request("POST", "/api/refresh")
 
-            self.assertEqual(status, 504)
-            self.assertEqual(json.loads(body)["error"], "Refresh pipeline timed out")
+            self.assertEqual(status, 503)
+            self.assertEqual(json.loads(body)["error"], "Remote refresh is not configured")
 
     def _write_fixture(self, root):
         (root / "pcso_results.json").write_text(json.dumps([

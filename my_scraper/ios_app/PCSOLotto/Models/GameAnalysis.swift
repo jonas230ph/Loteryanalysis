@@ -1,5 +1,7 @@
 import Foundation
 
+// Analysis shown on the game detail screen. The API sends snake_case keys, so
+// CodingKeys map them into Swift's camelCase property names.
 struct GameAnalysis: Codable, Hashable {
     let lottoGame: String
     let numberFrequency: [NumberFrequency]
@@ -14,18 +16,21 @@ struct GameAnalysis: Codable, Hashable {
     }
 }
 
+// One lottery number and how often it appeared historically.
 struct NumberFrequency: Identifiable, Codable, Hashable {
     var id: Int { number }
     let number: Int
     let frequency: Int
 }
 
+// Count of odd/even draw patterns, such as "3 Odd / 3 Even".
 struct OddEvenPattern: Identifiable, Codable, Hashable {
     var id: String { pattern }
     let pattern: String
     let draws: Int
 }
 
+// Summary of the number totals for a game's previous draws.
 struct SumStatistics: Codable, Hashable {
     let count: Int
     let min: Double
@@ -35,6 +40,7 @@ struct SumStatistics: Codable, Hashable {
     let std: Double
 }
 
+// Wrapper matching the /api/games/{game}/analysis JSON shape.
 struct AnalysisResponse: Codable {
     let analysis: GameAnalysis
 }

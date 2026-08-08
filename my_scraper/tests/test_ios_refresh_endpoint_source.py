@@ -16,7 +16,8 @@ class IOSRefreshEndpointSourceTests(unittest.TestCase):
         source = (PROJECT_ROOT / "ios_app/PCSOLotto/Services/LotteryRepository.swift").read_text(encoding="utf-8")
 
         self.assertIn("func refreshData() async throws", source)
-        self.assertIn('client.post("api/refresh")', source)
+        self.assertIn('"api/refresh"', source)
+        self.assertIn('"X-PCSO-Refresh-Key"', source)
 
     def test_view_model_refreshes_pipeline_before_loading_home(self):
         source = (PROJECT_ROOT / "ios_app/PCSOLotto/ViewModels/LotteryViewModel.swift").read_text(encoding="utf-8")

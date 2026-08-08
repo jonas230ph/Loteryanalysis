@@ -232,41 +232,87 @@ Start the local mobile API:
 ./pcso_env/bin/python -m mobile_api.app
 ```
 
-Then point the SwiftUI app to `http://127.0.0.1:8080` in the simulator, or to the Mac's LAN IP address when testing on a physical iPhone.
+Then point a simulator-only debug build at `http://127.0.0.1:8080`. A physical
+iPhone uses the Cloud Run HTTPS URL described below.
 
-## Deploy Mobile API On Railway
+## Deploy Mobile API With Cloud Run and Supabase
 
-Railway deployment config lives at the repository root:
-
-- `railway.toml`
-- `requirements.txt`
-
-The API binds to Railway's injected `PORT` on `0.0.0.0` and exposes:
+The hosted system has three separate jobs:
 
 ```text
-/api/health
-/api/refresh
+iPhone -> Cloud Run API -> Supabase current snapshot
+GitHub Actions -> scraper + analyzer -> Supabase current snapshot
 ```
 
-Deploy from GitHub in Railway:
+Cloud Run exposes the public API and never stores lottery files locally. GitHub
+Actions runs the Python scraper each day at 22:30 Asia/Manila and publishes a
+complete replacement snapshot only after the scraper and analyzer finish.
 
-1. Create a Railway project.
-2. Choose **Deploy from GitHub repo**.
-3. Select this repository and branch.
-4. Let Railway use the committed `railway.toml`.
-5. Generate a public domain for the service.
-6. Confirm `/api/health` returns `{"status": "ok"}`.
-7. Replace the iOS app base URL in `ios_app/PCSOLotto/Services/APIClient.swift` with the Railway public URL.
+### 1. Create the Supabase table
 
-The iOS app's pull-to-refresh and refresh toolbar button call `POST /api/refresh`.
-That endpoint runs:
+Create a Supabase project, open the migration below, copy its SQL into
+**SQL Editor**, and run it:
 
-```bash
-SYNCHRONIZE_CMD=true python scripts/auto_pipeline.py
+```text
+supabase/migrations/20260808_create_mobile_snapshots.sql
 ```
 
-on Railway, then the app reloads the latest results and suggestions. The refresh
-uses Railway's deployed filesystem, not the Mac path under `/Users/...`.
+The policy permits read-only access to the current public lottery snapshot.
+Only the Supabase service-role key, used inside GitHub Actions, can publish it.
+
+### 2. Add GitHub repository secrets
+
+In GitHub, open **Settings > Secrets and variables > Actions** and add:
+
+| Name | Type | Value |
+| --- | --- | --- |
+| `SUPABASE_URL` | Secret | Your `https://<project>.supabase.co` URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Secret | Supabase service-role key |
+
+The `Refresh PCSO Lottery Data` workflow can then be run manually from the
+Actions tab or will run daily. It uses `SYNCHRONIZE_CMD=true` and does not need
+the MacBook to be running.
+
+### 3. Configure Cloud Run deploy access
+
+In Google Cloud, create a project, enable **Cloud Run**, **Cloud Build**,
+**Artifact Registry**, **Secret Manager**, and **IAM Credentials** APIs. Configure
+GitHub Actions Workload Identity Federation for a deployment service account with
+Cloud Run Admin, Service Account User, Cloud Build Editor, and Artifact Registry
+Writer access. This avoids saving a Google Cloud key in GitHub.
+
+Create these Secret Manager entries and grant the Cloud Run runtime service
+account `Secret Manager Secret Accessor` for both:
+
+| Secret Manager name | Value |
+| --- | --- |
+| `pcso-supabase-publishable-key` | Supabase publishable/anon key |
+| `pcso-github-refresh-token` | Fine-grained GitHub token with Actions workflow write access for this repository |
+| `pcso-refresh-request-key` | A new long random value used only by your installed iPhone app |
+
+Add these GitHub repository variables:
+
+| Name | Example |
+| --- | --- |
+| `GCP_REGION` | `asia-southeast1` |
+| `GCP_WORKLOAD_IDENTITY_PROVIDER` | Full Workload Identity Provider resource name |
+| `GCP_DEPLOYER_SERVICE_ACCOUNT` | Deployment service-account email |
+| `SUPABASE_URL` | Your Supabase project URL |
+
+Run **Deploy PCSO API to Cloud Run** from the Actions tab. Its final log line
+contains the public `https://...run.app` API URL. Open `<API URL>/api/health` and
+confirm it returns `{"status": "ok"}`.
+
+### 4. Point the iPhone app to Cloud Run
+
+In Xcode, select the PCSOLotto target, open **Build Settings**, and replace both
+placeholders: `API_BASE_URL` with the Cloud Run URL and `REFRESH_REQUEST_KEY`
+with the same value stored as `pcso-refresh-request-key`. Do not add a port
+number. Rebuild and install the app on the iPhone.
+
+Pull-to-refresh starts the GitHub Actions workflow and immediately reloads the
+last published data. The app displays a message while the new snapshot is being
+prepared; it becomes visible once the workflow completes.
 - `scripts/auto_pipeline.py` - Python implementation.
 
 Both scripts run the same pipeline:
