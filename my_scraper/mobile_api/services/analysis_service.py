@@ -65,11 +65,50 @@ class AnalysisService:
             for row in self._read_csv("possible_winning_numbers_by_game.csv")
         ]
 
+    def ultra_lotto_trend_data(self):
+        """Return the focused Ultra Lotto reports used by the mobile Trends tab."""
+        patterns = [
+            {
+                "rank": int(row["rank"]),
+                "pattern": row["odd_even_pattern"],
+                "draws": int(row["draws"]),
+                "draw_percentage": float(row["draw_percentage"]),
+                "moving_window_days": int(row["moving_window_days"]),
+                "moving_window_start": row["moving_window_start"],
+                "moving_window_end": row["moving_window_end"],
+                "moving_window_draws": int(row["moving_window_draws"]),
+            }
+            for row in self._read_optional_csv("ultra_lotto_6_58_recent_odd_even_patterns.csv")
+        ]
+        suggestions = [
+            {
+                "rank": int(row["rank"]),
+                "suggested_combination": row["suggested_combination"],
+                "odd_count": int(row["odd_count"]),
+                "even_count": int(row["even_count"]),
+                "sum": int(float(row["sum"])),
+                "trend_score": float(row["trend_score"]),
+                "matches_recent_sum_range": row["matches_recent_sum_range"].lower() == "true",
+                "basis": row["basis"],
+            }
+            for row in self._read_optional_csv("ultra_lotto_6_58_trend_suggestions.csv")
+        ]
+        return {"odd_even_patterns": patterns, "suggestions": suggestions}
+
     def _read_csv(self, filename):
         # A missing generated file usually means the pipeline has not run yet.
         path = self.output_dir / filename
         if not path.exists():
             raise FileNotFoundError(f"Missing analysis file: {path}")
+        with path.open(newline="", encoding="utf-8") as file:
+            return list(csv.DictReader(file))
+
+    def _read_optional_csv(self, filename):
+        # The app can still load an older published snapshot while the next
+        # pipeline run creates these newer focused-report files.
+        path = self.output_dir / filename
+        if not path.exists():
+            return []
         with path.open(newline="", encoding="utf-8") as file:
             return list(csv.DictReader(file))
 

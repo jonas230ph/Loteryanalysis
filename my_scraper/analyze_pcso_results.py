@@ -32,6 +32,8 @@ GAME_RULES = {
     "Suertres Lotto 2PM": {"pool": 10, "pick": 3, "replace": True, "ordered": True},
 }
 
+ULTRA_LOTTO_GAME = "Ultra Lotto 6/58"
+
 
 def parse_numbers(combination):
     return [int(value) for value in re.findall(r"\d+", str(combination))]
@@ -81,6 +83,218 @@ def pattern_analysis(df):
         .reset_index()
         .sort_values(["lotto_game", "draws"], ascending=[True, False])
     )
+
+
+def daily_odd_even_analysis(df):
+    """Summarize drawn odd and even numbers for each game on each date."""
+    report = (
+        df.assign(draw_date=df["draw_date"].dt.strftime("%Y-%m-%d"))
+        .groupby(["draw_date", "lotto_game"], as_index=False)
+        .agg(
+            draws=("lotto_game", "size"),
+            odd_numbers=("odd_count", "sum"),
+            even_numbers=("even_count", "sum"),
+        )
+    )
+    report["total_numbers"] = report["odd_numbers"] + report["even_numbers"]
+    report["odd_percentage"] = (report["odd_numbers"] / report["total_numbers"] * 100).round(2)
+    report["even_percentage"] = (report["even_numbers"] / report["total_numbers"] * 100).round(2)
+    return report.sort_values(["draw_date", "lotto_game"], ascending=[False, True]).reset_index(drop=True)
+
+
+def ultra_lotto_trend_analysis(df, recent_window=30, odd_even_weeks=4):
+    """Compare recent Ultra Lotto draws with the complete available history.
+
+    The report describes past draws only. Lottery draws remain random, so a
+    higher trend score does not predict or improve the chance of a future win.
+    """
+    if recent_window <= 0:
+        raise ValueError("recent_window must be greater than zero.")
+    if odd_even_weeks <= 0:
+        raise ValueError("odd_even_weeks must be greater than zero.")
+
+    ultra_draws = (
+        df[df["lotto_game"] == ULTRA_LOTTO_GAME]
+        .dropna(subset=["draw_date"])
+        .sort_values("draw_date", ascending=False)
+        .copy()
+    )
+    if ultra_draws.empty:
+        raise ValueError(f"No valid draws found for {ULTRA_LOTTO_GAME}.")
+
+    recent_draws = ultra_draws.head(recent_window).copy()
+    historical_frequency = (
+        ultra_draws[["numbers"]]
+        .explode("numbers")
+        .groupby("numbers")
+        .size()
+        .rename("historical_frequency")
+        .reset_index()
+        .rename(columns={"numbers": "number"})
+    )
+    recent_frequency = (
+        recent_draws[["numbers"]]
+        .explode("numbers")
+        .groupby("numbers")
+        .size()
+        .rename("recent_frequency")
+        .reset_index()
+        .rename(columns={"numbers": "number"})
+    )
+
+    trends = (
+        pd.DataFrame({"number": range(1, GAME_RULES[ULTRA_LOTTO_GAME]["pool"] + 1)})
+        .merge(historical_frequency, on="number", how="left")
+        .merge(recent_frequency, on="number", how="left")
+        .fillna(0)
+    )
+    trends[["historical_frequency", "recent_frequency"]] = trends[
+        ["historical_frequency", "recent_frequency"]
+    ].astype(int)
+    trends["parity"] = np.where(trends["number"] % 2 == 0, "even", "odd")
+    trends["historical_draw_percentage"] = (
+        trends["historical_frequency"] / len(ultra_draws) * 100
+    ).round(2)
+    trends["recent_draw_percentage"] = (
+        trends["recent_frequency"] / len(recent_draws) * 100
+    ).round(2)
+    trends["trend_delta_percentage_points"] = (
+        trends["recent_draw_percentage"] - trends["historical_draw_percentage"]
+    ).round(2)
+    trends = trends.sort_values(
+        ["trend_delta_percentage_points", "recent_frequency", "historical_frequency", "number"],
+        ascending=[False, False, False, True],
+    ).reset_index(drop=True)
+
+    moving_window_days = odd_even_weeks * 7
+    moving_window_end = ultra_draws["draw_date"].max()
+    moving_window_start = moving_window_end - pd.Timedelta(days=moving_window_days - 1)
+    moving_odd_even_draws = ultra_draws[ultra_draws["draw_date"] >= moving_window_start].copy()
+
+    if "odd_even_pattern" not in moving_odd_even_draws:
+        moving_odd_even_draws["odd_even_pattern"] = (
+            moving_odd_even_draws["odd_count"].astype(str)
+            + " odd / "
+            + moving_odd_even_draws["even_count"].astype(str)
+            + " even"
+        )
+    recent_patterns = pattern_analysis(moving_odd_even_draws).copy()
+    recent_patterns["draw_percentage"] = (
+        recent_patterns["draws"] / len(moving_odd_even_draws) * 100
+    ).round(2)
+    recent_patterns = recent_patterns.sort_values(
+        ["draws", "odd_even_pattern"], ascending=[False, True]
+    ).reset_index(drop=True)
+    recent_patterns.insert(0, "rank", range(1, len(recent_patterns) + 1))
+    recent_patterns["moving_window_days"] = moving_window_days
+    recent_patterns["moving_window_start"] = moving_window_start.strftime("%Y-%m-%d")
+    recent_patterns["moving_window_end"] = moving_window_end.strftime("%Y-%m-%d")
+    recent_patterns["moving_window_draws"] = len(moving_odd_even_draws)
+    return trends, recent_patterns, recent_draws
+
+
+def ultra_lotto_trend_suggestions(recent_draws, trends, patterns, suggestion_count=5, seed=42):
+    """Create sample Ultra Lotto combinations that mirror historical trends only."""
+    columns = [
+        "rank",
+        "suggested_combination",
+        "odd_count",
+        "even_count",
+        "sum",
+        "trend_score",
+        "matches_recent_sum_range",
+        "basis",
+    ]
+    if suggestion_count <= 0 or recent_draws.empty or patterns.empty:
+        return pd.DataFrame(columns=columns)
+
+    preferred_counts = pattern_counts(patterns.iloc[0]["odd_even_pattern"])
+    if not preferred_counts:
+        return pd.DataFrame(columns=columns)
+    odd_needed, even_needed = preferred_counts
+    if odd_needed + even_needed != GAME_RULES[ULTRA_LOTTO_GAME]["pick"]:
+        return pd.DataFrame(columns=columns)
+
+    trend_lookup = trends.set_index("number")
+    odd_numbers = trend_lookup[trend_lookup["parity"] == "odd"].index.to_numpy(dtype=int)
+    even_numbers = trend_lookup[trend_lookup["parity"] == "even"].index.to_numpy(dtype=int)
+    if len(odd_numbers) < odd_needed or len(even_numbers) < even_needed:
+        return pd.DataFrame(columns=columns)
+
+    # Recent movement has extra weight, while every number keeps a nonzero chance.
+    def weights_for(values):
+        rows = trend_lookup.loc[values]
+        return (
+            1
+            + rows["historical_frequency"].to_numpy(dtype=float)
+            + rows["recent_frequency"].to_numpy(dtype=float) * 3
+            + np.maximum(rows["trend_delta_percentage_points"].to_numpy(dtype=float), 0) / 10
+        )
+
+    odd_weights = weights_for(odd_numbers)
+    even_weights = weights_for(even_numbers)
+    median_sum = float(recent_draws["sum"].median())
+    recent_std = float(recent_draws["sum"].std())
+    tolerance = max(8, int(round(0 if pd.isna(recent_std) else recent_std)))
+    min_sum, max_sum = median_sum - tolerance, median_sum + tolerance
+    pattern_window_days = int(patterns.iloc[0].get("moving_window_days", 28))
+    pattern_window_start = patterns.iloc[0].get("moving_window_start", "latest rolling window")
+    pattern_window_end = patterns.iloc[0].get("moving_window_end", "latest draw")
+    rng = np.random.default_rng(seed)
+    suggestions = []
+    seen = set()
+
+    def add_combo(combo):
+        combo = tuple(sorted(int(number) for number in combo))
+        if combo in seen:
+            return False
+        seen.add(combo)
+        combo_sum = sum(combo)
+        rows = trend_lookup.loc[list(combo)]
+        suggestions.append({
+            "rank": len(suggestions) + 1,
+            "suggested_combination": "-".join(f"{number:02d}" for number in combo),
+            "odd_count": sum(number % 2 for number in combo),
+            "even_count": len(combo) - sum(number % 2 for number in combo),
+            "sum": combo_sum,
+            "trend_score": round(float(rows["trend_delta_percentage_points"].sum()), 2),
+            "matches_recent_sum_range": min_sum <= combo_sum <= max_sum,
+            "basis": (
+                "historical analysis only: recent number movement, "
+                f"{pattern_window_days}-day moving odd/even pattern "
+                f"({pattern_window_start} to {pattern_window_end}), and recent sum range; "
+                "no winning outcome is predicted"
+            ),
+        })
+        return True
+
+    # First sample is a transparent deterministic baseline from the top trend rows.
+    ranked_odds = trends[trends["parity"] == "odd"]["number"].to_numpy(dtype=int)
+    ranked_evens = trends[trends["parity"] == "even"]["number"].to_numpy(dtype=int)
+    baseline = np.concatenate([ranked_odds[:odd_needed], ranked_evens[:even_needed]])
+    if min_sum <= baseline.sum() <= max_sum:
+        add_combo(baseline)
+
+    attempts = 0
+    while len(suggestions) < suggestion_count and attempts < 20_000:
+        attempts += 1
+        combo = np.concatenate([
+            weighted_choice_without_replacement(rng, odd_numbers, odd_weights, odd_needed),
+            weighted_choice_without_replacement(rng, even_numbers, even_weights, even_needed),
+        ])
+        if min_sum <= combo.sum() <= max_sum:
+            add_combo(combo)
+
+    # Keep the requested report useful even when a narrow recent sum range has few combinations.
+    while len(suggestions) < suggestion_count and attempts < 40_000:
+        attempts += 1
+        combo = np.concatenate([
+            weighted_choice_without_replacement(rng, odd_numbers, odd_weights, odd_needed),
+            weighted_choice_without_replacement(rng, even_numbers, even_weights, even_needed),
+        ])
+        add_combo(combo)
+
+    return pd.DataFrame(suggestions, columns=columns)
 
 
 def sum_analysis(df):
@@ -305,6 +519,24 @@ def main():
     parser.add_argument("--simulations", type=int, default=200_000, help="Monte Carlo draw count.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducible simulations.")
     parser.add_argument("--suggestions-per-game", type=int, default=3, help="Suggested combinations to generate per game.")
+    parser.add_argument(
+        "--ultra-trend-window",
+        type=int,
+        default=30,
+        help="Number of latest Ultra Lotto 6/58 draws to compare with all history.",
+    )
+    parser.add_argument(
+        "--ultra-trend-suggestions",
+        type=int,
+        default=5,
+        help="Ultra Lotto 6/58 historical-analysis sample combinations to generate.",
+    )
+    parser.add_argument(
+        "--ultra-odd-even-weeks",
+        type=int,
+        default=4,
+        help="Calendar weeks in the rolling Ultra Lotto odd/even pattern basis.",
+    )
     args = parser.parse_args()
 
     input_path = Path(args.input)
@@ -326,10 +558,12 @@ def main():
 
     freq_df = frequency_analysis(df)
     pattern_df = pattern_analysis(df)
+    daily_odd_even_df = daily_odd_even_analysis(df)
     sum_df = sum_analysis(df)
 
     freq_df.to_csv(output_dir / "number_frequency_by_game.csv", index=False)
     pattern_df.to_csv(output_dir / "odd_even_patterns_by_game.csv", index=False)
+    daily_odd_even_df.to_csv(output_dir / "daily_odd_even_counts_by_game.csv", index=False)
     sum_df.to_csv(output_dir / "sum_statistics_by_game.csv", index=False)
     suggestion_df = suggest_combinations(
         df,
@@ -340,6 +574,22 @@ def main():
         seed=args.seed,
     )
     suggestion_df.to_csv(output_dir / "possible_winning_numbers_by_game.csv", index=False)
+
+    ultra_trends, ultra_patterns, ultra_recent_draws = ultra_lotto_trend_analysis(
+        df,
+        recent_window=args.ultra_trend_window,
+        odd_even_weeks=args.ultra_odd_even_weeks,
+    )
+    ultra_suggestions = ultra_lotto_trend_suggestions(
+        ultra_recent_draws,
+        ultra_trends,
+        ultra_patterns,
+        suggestion_count=args.ultra_trend_suggestions,
+        seed=args.seed,
+    )
+    ultra_trends.to_csv(output_dir / "ultra_lotto_6_58_number_trends.csv", index=False)
+    ultra_patterns.to_csv(output_dir / "ultra_lotto_6_58_recent_odd_even_patterns.csv", index=False)
+    ultra_suggestions.to_csv(output_dir / "ultra_lotto_6_58_trend_suggestions.csv", index=False)
 
     game_df = df[df["lotto_game"] == args.game].copy()
     rule = GAME_RULES.get(args.game)
@@ -364,8 +614,14 @@ def main():
     if not skipped_df.empty:
         print(f"Skipped {len(skipped_df)} rows with no parseable combination numbers.")
     print(f"Selected game: {args.game} ({len(game_df)} historical draws)")
+    print(f"Daily odd/even rows saved: {len(daily_odd_even_df)}")
     print(f"Most common odd/even pattern: {most_common_pattern['odd_even_pattern']} ({most_common_pattern['draws']} draws)")
     print(f"Historical sum range: {int(game_sums['min'])} to {int(game_sums['max'])}; median {game_sums['median']}")
+    print(
+        f"Ultra Lotto trend report: {len(ultra_recent_draws)} recent draws, "
+        f"{len(ultra_suggestions)} historical-analysis sample combinations, "
+        f"{args.ultra_odd_even_weeks}-week rolling odd/even basis"
+    )
     print(f"Monte Carlo target combination: {'-'.join(str(num) for num in target)}")
     print(f"Theoretical exact-match probability: {probability:.12f} (about 1 in {round(1 / probability):,})")
     print(f"Simulation hits: {int(sim_df.iloc[-1]['hits'])} of {args.simulations:,}")

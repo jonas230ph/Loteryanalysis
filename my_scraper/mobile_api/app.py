@@ -37,7 +37,7 @@ class MobileAPI:
                 return self._refresh(headers or {})
             if method != "GET":
                 return self._json(405, {"error": "Method not allowed"})
-            if path not in {"/api/results", "/api/games", "/api/suggestions"} and not path.startswith("/api/games/"):
+            if path not in {"/api/results", "/api/games", "/api/suggestions", "/api/ultra-lotto/trends"} and not path.startswith("/api/games/"):
                 return self._json(404, {"error": "Not found"})
             snapshot = self.snapshot_store.load()
             if path == "/api/results":
@@ -46,6 +46,10 @@ class MobileAPI:
                 return self._json(200, {"games": snapshot["games"]})
             if path == "/api/suggestions":
                 return self._json(200, {"suggestions": snapshot["suggestions"]})
+            if path == "/api/ultra-lotto/trends":
+                # Older Supabase snapshots may not have this field until their
+                # next scheduled pipeline run, so return an empty valid payload.
+                return self._json(200, snapshot.get("ultra_lotto_trends", empty_ultra_lotto_trends()))
             if path.startswith("/api/games/"):
                 return self._handle_game_route(path, snapshot)
             return self._json(404, {"error": "Not found"})
@@ -142,6 +146,11 @@ def empty_analysis(game):
         "odd_even_patterns": [],
         "sum_statistics": None,
     }
+
+
+def empty_ultra_lotto_trends():
+    """Empty shape lets new app versions read an older published snapshot."""
+    return {"odd_even_patterns": [], "suggestions": []}
 
 
 def runtime_config():

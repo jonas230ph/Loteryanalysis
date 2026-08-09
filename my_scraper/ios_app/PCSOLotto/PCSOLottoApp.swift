@@ -21,6 +21,11 @@ struct PCSOLottoApp: App {
                     SuggestionsView(viewModel: viewModel)
                 }
                 .tabItem { Label("Suggestions", systemImage: "sparkles") }
+
+                NavigationStack {
+                    UltraTrendsView(viewModel: viewModel)
+                }
+                .tabItem { Label("Ultra Trends", systemImage: "chart.bar.xaxis") }
             }
             .task {
                 // Load data once when the app first appears.

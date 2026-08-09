@@ -30,6 +30,7 @@ class FileSnapshotStore:
             "results": results,
             "games": games,
             "suggestions": self.analysis_service.list_suggestions(),
+            "ultra_lotto_trends": self.analysis_service.ultra_lotto_trend_data(),
             "analysis_by_game": {
                 game: self.analysis_service.analysis_for_game(game)
                 for game in games

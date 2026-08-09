@@ -41,6 +41,12 @@ final class LotteryRepository {
         return response.suggestions
     }
 
+    func fetchUltraLottoTrends() async throws -> UltraLottoTrend {
+        // This route contains the four-week odd/even basis and Ultra samples.
+        let response: UltraLottoTrendResponse = try await client.get("api/ultra-lotto/trends")
+        return response.asTrend()
+    }
+
     func refreshData() async throws -> RefreshResponse {
         // Render starts the GitHub Actions job. The current snapshot remains
         // readable while its next version is being scraped and analyzed.

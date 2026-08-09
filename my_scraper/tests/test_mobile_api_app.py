@@ -20,6 +20,7 @@ class MobileAPITests(unittest.TestCase):
             game_status, game_body = app.handle_request("GET", "/api/games/Ultra%20Lotto%206%2F58/results")
             analysis_status, analysis_body = app.handle_request("GET", "/api/games/Ultra%20Lotto%206%2F58/analysis")
             suggestions_status, suggestions_body = app.handle_request("GET", "/api/suggestions")
+            trends_status, trends_body = app.handle_request("GET", "/api/ultra-lotto/trends")
 
             self.assertEqual(results_status, 200)
             self.assertEqual(json.loads(results_body)["results"][0]["lotto_game"], "Ultra Lotto 6/58")
@@ -31,6 +32,8 @@ class MobileAPITests(unittest.TestCase):
             self.assertEqual(json.loads(analysis_body)["analysis"]["sum_statistics"]["count"], 1)
             self.assertEqual(suggestions_status, 200)
             self.assertEqual(len(json.loads(suggestions_body)["suggestions"]), 1)
+            self.assertEqual(trends_status, 200)
+            self.assertEqual(json.loads(trends_body)["odd_even_patterns"][0]["moving_window_days"], 28)
 
     def test_unknown_route_returns_404(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -143,5 +146,15 @@ class MobileAPITests(unittest.TestCase):
         (outputs / "possible_winning_numbers_by_game.csv").write_text(
             "lotto_game,suggested_combination,sum,odd_even_pattern,historical_frequency_score,basis\n"
             "Ultra Lotto 6/58,01-02-03-04-05-06,21,3 odd / 3 even,90,weighted\n",
+            encoding="utf-8",
+        )
+        (outputs / "ultra_lotto_6_58_recent_odd_even_patterns.csv").write_text(
+            "rank,lotto_game,odd_even_pattern,draws,draw_percentage,moving_window_days,moving_window_start,moving_window_end,moving_window_draws\n"
+            "1,Ultra Lotto 6/58,2 odd / 4 even,1,100,28,2026-04-06,2026-05-03,1\n",
+            encoding="utf-8",
+        )
+        (outputs / "ultra_lotto_6_58_trend_suggestions.csv").write_text(
+            "rank,suggested_combination,odd_count,even_count,sum,trend_score,matches_recent_sum_range,basis\n"
+            "1,01-02-03-04-05-06,3,3,21,5,True,historical analysis only\n",
             encoding="utf-8",
         )

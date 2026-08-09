@@ -21,3 +21,12 @@ class IOSRefreshSourceTests(unittest.TestCase):
         self.assertIn("ToolbarItem", source)
         self.assertIn('Image(systemName: "arrow.clockwise")', source)
         self.assertIn("await viewModel.refreshHome()", source)
+
+    def test_ultra_trends_tab_shows_the_moving_odd_even_basis(self):
+        app_source = (PROJECT_ROOT / "ios_app/PCSOLotto/PCSOLottoApp.swift").read_text(encoding="utf-8")
+        view_source = (PROJECT_ROOT / "ios_app/PCSOLotto/Views/SuggestionsView.swift").read_text(encoding="utf-8")
+
+        self.assertIn("UltraTrendsView", app_source)
+        self.assertIn('Label("Ultra Trends", systemImage: "chart.bar.xaxis")', app_source)
+        self.assertIn("Moving Four-Week Odd / Even Basis", view_source)
+        self.assertIn("await viewModel.refreshHome()", view_source)

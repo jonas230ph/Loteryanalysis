@@ -104,8 +104,12 @@ The analyzer creates these CSV files:
 
 - `number_frequency_by_game.csv` - Frequency count for every number by game.
 - `odd_even_patterns_by_game.csv` - Counts of patterns like `3 odd / 3 even`.
+- `daily_odd_even_counts_by_game.csv` - Daily odd and even number totals for each game.
 - `sum_statistics_by_game.csv` - Min, median, mean, max, and standard deviation of draw sums.
 - `possible_winning_numbers_by_game.csv` - Data-informed suggested combinations for every game.
+- `ultra_lotto_6_58_number_trends.csv` - Recent-vs-historical frequency movement for all Ultra Lotto numbers.
+- `ultra_lotto_6_58_recent_odd_even_patterns.csv` - Odd/even patterns across the selected recent Ultra Lotto draws.
+- `ultra_lotto_6_58_trend_suggestions.csv` - Sample Ultra Lotto combinations matching historical trend and odd/even data.
 - `<game>_most_least_numbers.csv` - Most and least frequent numbers for the selected game.
 - `<game>_monte_carlo.csv` - Monte Carlo checkpoints and hit counts.
 
@@ -153,6 +157,27 @@ The suggestions use:
 - the most common odd/even pattern per game
 - each game's median historical sum range
 - game-specific number rules
+
+## Ultra Lotto 6/58 Trend Analysis
+
+Every normal analysis run also creates a focused Ultra Lotto 6/58 report. It
+compares the latest 30 draws with the full available Ultra Lotto history. Its
+odd/even basis is a moving four-calendar-week window ending on the newest
+available Ultra Lotto draw, and includes:
+
+- frequency change for every number
+- the most common odd/even split in the latest four weeks of draws
+- sample combinations that use that recent odd/even split and a recent sum range
+
+Use a different recent-draw window or number of samples:
+
+```bash
+./pcso_env/bin/python analyze_pcso_results.py --ultra-trend-window 50 --ultra-odd-even-weeks 4 --ultra-trend-suggestions 10
+```
+
+These reports are descriptive historical analysis, not a way to identify
+successful or guaranteed winning numbers. Each valid Ultra Lotto 6/58
+combination has the same chance of being drawn.
 
 ## Monte Carlo Simulation
 

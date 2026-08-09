@@ -96,3 +96,27 @@ class AnalysisServiceTests(unittest.TestCase):
 
             self.assertEqual(suggestions[0]["suggested_combination"], "01-02-03-04-05-06")
             self.assertEqual(suggestions[0]["historical_frequency_score"], 90)
+
+    def test_lists_ultra_lotto_trend_data_from_csv_outputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            outputs = root / "analysis_outputs"
+            outputs.mkdir()
+            (outputs / "ultra_lotto_6_58_recent_odd_even_patterns.csv").write_text(
+                "rank,lotto_game,odd_even_pattern,draws,draw_percentage,moving_window_days,moving_window_start,moving_window_end,moving_window_draws\n"
+                "1,Ultra Lotto 6/58,2 odd / 4 even,5,41.67,28,2026-07-13,2026-08-09,12\n",
+                encoding="utf-8",
+            )
+            (outputs / "ultra_lotto_6_58_trend_suggestions.csv").write_text(
+                "rank,suggested_combination,odd_count,even_count,sum,trend_score,matches_recent_sum_range,basis\n"
+                "1,04-08-11-43-46-54,2,4,166,52.15,True,historical analysis only\n",
+                encoding="utf-8",
+            )
+
+            trend = AnalysisService(root).ultra_lotto_trend_data()
+
+            self.assertEqual(trend["odd_even_patterns"][0]["pattern"], "2 odd / 4 even")
+            self.assertEqual(trend["odd_even_patterns"][0]["moving_window_days"], 28)
+            self.assertEqual(trend["odd_even_patterns"][0]["moving_window_draws"], 12)
+            self.assertEqual(trend["suggestions"][0]["odd_count"], 2)
+            self.assertTrue(trend["suggestions"][0]["matches_recent_sum_range"])

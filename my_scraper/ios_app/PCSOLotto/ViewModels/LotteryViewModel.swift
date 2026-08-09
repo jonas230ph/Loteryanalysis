@@ -7,6 +7,7 @@ final class LotteryViewModel: ObservableObject {
     @Published var results: [LottoResult] = []
     @Published var games: [String] = []
     @Published var suggestions: [Suggestion] = []
+    @Published var ultraLottoTrends: UltraLottoTrend = .empty
     @Published var selectedAnalysis: GameAnalysis?
     @Published var isLoading = false
     @Published var errorMessage: String?
@@ -59,8 +60,11 @@ final class LotteryViewModel: ObservableObject {
         async let fetchedResults = repository.fetchResults()
         async let fetchedGames = repository.fetchGames()
         async let fetchedSuggestions = repository.fetchSuggestions()
+        async let fetchedUltraTrends = repository.fetchUltraLottoTrends()
         results = try await fetchedResults
         games = try await fetchedGames
         suggestions = try await fetchedSuggestions
+        // A new app can open against a temporarily older API deployment.
+        ultraLottoTrends = (try? await fetchedUltraTrends) ?? .empty
     }
 }
