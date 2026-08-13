@@ -1,0 +1,9 @@
+ActionID,PerformanceDate,Channel,SLA_Pct,ACR_Pct,BreachType,RootCause,RecoveryAction,Owner,DueDate,Status,ManagerEmail,AlertSent,AlertSentAt
+SRA-20260505-V01,2026-05-05,Voice,0.7583,0.0417,SLA,Unexpected absence,Activate cross-skilled overflow coverage,Mia Santos,2026-05-07,Complete,mia.santos@contoso.com,Yes,2026-05-05T10:15:00Z
+SRA-20260509-C01,2026-05-09,Chat,0.9200,0.0800,ACR,Chat platform latency,Escalate latency incident and add queue monitor,Noah Reyes,2026-05-11,Complete,noah.reyes@contoso.com,Yes,2026-05-09T13:30:00Z
+SRA-20260514-V01,2026-05-14,Voice,0.7500,0.0800,Both,Marketing campaign volume spike,Add intraday flex staffing for campaign windows,Mia Santos,2026-05-16,Open,mia.santos@contoso.com,Yes,2026-05-14T09:05:00Z
+SRA-20260602-V01,2026-06-02,Voice,0.8783,0.0696,ACR,Knowledge-base outage,Publish outage fallback script,Mia Santos,2026-06-04,Complete,mia.santos@contoso.com,No,
+SRA-20260610-C01,2026-06-10,Chat,0.7600,0.0800,Both,Product release demand,Schedule release-day chat surge roster,Noah Reyes,2026-06-12,In Progress,noah.reyes@contoso.com,Yes,2026-06-10T14:20:00Z
+SRA-20260628-C01,2026-06-28,Chat,0.8922,0.0686,ACR,Weekend staffing gap,Rebalance weekend chat schedule,Noah Reyes,2026-06-30,Open,noah.reyes@contoso.com,No,
+SRA-20260707-V01,2026-07-07,Voice,0.7583,0.0667,Both,Telephony routing incident,Implement secondary routing runbook,Mia Santos,2026-07-09,Complete,mia.santos@contoso.com,Yes,2026-07-07T11:40:00Z
+SRA-20260718-C01,2026-07-18,Chat,0.7714,0.0476,Both,Training overlap,Stagger training blocks across shifts,Noah Reyes,2026-07-20,Open,noah.reyes@contoso.com,Yes,2026-07-18T08:50:00Z
