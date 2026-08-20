@@ -1,0 +1,52 @@
+services:
+  - type: web
+    name: flightaware-delay-totals-api
+    runtime: python
+    rootDir: Flightdelay/api
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: STORAGE_BACKEND
+        value: supabase
+      - key: ENABLE_SCHEDULER
+        value: false
+      - key: SCHEDULER_TIMEZONE
+        value: America/New_York
+      - key: CACHE_TTL_SECONDS
+        value: 120
+      - key: USER_AGENT
+        value: flightaware-totals-api/1.1 contact=ops@example.com
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_TABLE
+        value: flightaware_delay_totals
+      - key: SCRAPE_SECRET
+        generateValue: true
+
+  - type: cron
+    name: flightaware-delay-totals-scrape-scheduler
+    runtime: python
+    rootDir: Flightdelay/api
+    buildCommand: pip install -r requirements.txt
+    startCommand: python scripts/scrape_if_due.py
+    schedule: "0 * * * *"
+    envVars:
+      - key: STORAGE_BACKEND
+        value: supabase
+      - key: ENABLE_SCHEDULER
+        value: false
+      - key: SCHEDULER_TIMEZONE
+        value: America/New_York
+      - key: CACHE_TTL_SECONDS
+        value: 1
+      - key: USER_AGENT
+        value: flightaware-totals-api/1.1 contact=ops@example.com
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_TABLE
+        value: flightaware_delay_totals
