@@ -1,329 +1,210 @@
-# FlightAware Delay Totals API
+# Cancelled Flights API
 
-This FastAPI service scrapes FlightAware's public cancelled-flight totals pages and stores the United States delay/cancellation totals for today and the previous 3 days.
+## Summary
 
-It captures these 2 values from each source page:
+Use FlightAware AeroAPI, not public-page scraping. FlightAware `robots.txt` restricts several automated paths under `/live`, and the Terms of Use say the website may be accessed only with a human-operated browser except for FlightAware data feeds and APIs. This wrapper therefore defaults to AeroAPI and blocks scrape mode unless your team obtains explicit permission.
 
-- `Total delays within, into, or out of the United States ...`
-- `Total cancellations within, into, or out of the United States ...`
-
-## Source Pages
-
-The scraper reads these pages:
-
-```text
-https://www.flightaware.com/live/cancelled/today
-https://www.flightaware.com/live/cancelled/yesterday
-https://www.flightaware.com/live/cancelled/minus2days
-https://www.flightaware.com/live/cancelled/minus3days
-```
-
-## Schedule
-
-The intended scrape schedule is:
-
-- `12:00 AM ET`
-- `5:00 AM ET`
-- `9:00 PM ET`
-
-For local or always-on hosting, the app can use its built-in scheduler with `America/New_York`, so daylight saving time is handled as ET rather than fixed UTC offset EST.
-
-For Render, the included `render.yaml` uses a cron service that runs hourly. The cron service runs `scripts/scrape_if_due.py`; that script checks the current `America/New_York` hour and only scrapes at `00`, `05`, and `21`. This avoids Render's UTC-only cron schedule drifting during daylight saving time.
-
-## Requirements
-
-- Python 3.12+
-- Internet access to `https://www.flightaware.com`
-- FastAPI dependencies from `requirements.txt`
-- Storage:
-  - Default: SQLite
-  - Optional: Supabase table using `supabase_schema.sql`
-
-No FlightAware API key is required for this public totals scraper.
-
-## Local Setup
+## Quick Start
 
 ```bash
 cd /Users/jonasodones/Desktop/src/Flightdelay/api
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
+export FLIGHTAWARE_API_KEY="YOUR_AEROAPI_KEY"
 uvicorn app:app --reload --port 8000
 ```
 
-Open:
-
-```text
-http://127.0.0.1:8000/health
-```
-
-## Run A Scrape
+Call the wrapper:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/flightaware/scrape"
-```
-
-Response shape:
-
-```json
-{
-  "status": "ok",
-  "storage_backend": "sqlite",
-  "run_id": "uuid",
-  "count": 4,
-  "rows": []
-}
-```
-
-## Read Latest Stored Data
-
-JSON:
-
-```bash
-curl "http://127.0.0.1:8000/flightaware/totals"
+curl "http://127.0.0.1:8000/cancelled?airport=KLAX&date=2026-05-07&limit=50"
 ```
 
 CSV:
 
 ```bash
-curl "http://127.0.0.1:8000/flightaware/totals?format=csv"
+curl "http://127.0.0.1:8000/cancelled?airline=AA&format=csv"
 ```
 
-Excel-friendly CSV endpoint:
+## AeroAPI Credentials
 
-```text
-http://127.0.0.1:8000/excel/flightaware-totals.csv
-```
-
-CSV columns:
-
-```csv
-date,day_offset,page_label,total_delays_within_into_or_out_of_united_states,total_cancellations_within_into_or_out_of_united_states,source_url,scraped_at,run_id
-```
-
-## Add To Excel
-
-1. Start the API locally or deploy it.
-2. Copy the CSV URL:
-
-```text
-http://127.0.0.1:8000/excel/flightaware-totals.csv
-```
-
-3. In Excel, choose **Data**.
-4. Choose **From Web**.
-5. Paste the CSV URL.
-6. Load the table.
-7. To refresh later, use **Data > Refresh All**.
-
-If deployed on Render, use your Render URL:
-
-```text
-https://YOUR-RENDER-SERVICE.onrender.com/excel/flightaware-totals.csv
-```
-
-## Environment Variables
-
-```text
-STORAGE_BACKEND=sqlite
-SQLITE_DB_PATH=flightaware_scrapes.db
-ENABLE_SCHEDULER=true
-SCHEDULER_TIMEZONE=America/New_York
-CACHE_TTL_SECONDS=120
-SCRAPE_SECRET=
-USER_AGENT=flightaware-totals-api/1.1 contact=ops@example.com
-LOG_LEVEL=INFO
-```
-
-Optional Supabase settings:
-
-```text
-STORAGE_BACKEND=supabase
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-SUPABASE_TABLE=flightaware_delay_totals
-```
-
-If `SCRAPE_SECRET` is set, manual scrape calls must include it:
+1. Create or log in to a FlightAware account.
+2. Go to the AeroAPI portal: `https://www.flightaware.com/aeroapi/portal/`
+3. Create/copy an API key.
+4. Store it only in environment variables or a secret manager:
 
 ```bash
-curl -X POST "https://YOUR-SERVICE/flightaware/scrape?secret=YOUR_SECRET"
+export FLIGHTAWARE_API_KEY="YOUR_AEROAPI_KEY"
 ```
 
-## SQLite Storage
-
-SQLite is the default storage backend.
-
-For local use:
+FlightAware AeroAPI v4 uses:
 
 ```text
-SQLITE_DB_PATH=flightaware_scrapes.db
+Base URL: https://aeroapi.flightaware.com/aeroapi/
+Header:   x-apikey: YOUR_AEROAPI_KEY
 ```
 
-For Render, use a persistent disk:
+Recommended endpoint for a recent cancelled-flight list:
 
 ```text
-SQLITE_DB_PATH=/var/data/flightaware_scrapes.db
+GET /flights/search/advanced
+query={true cancelled} {orig_or_dest {KLAX}}
 ```
 
-Without a persistent disk on Render, SQLite data can disappear after restarts.
+Airport/operator historical and scheduled endpoints may be needed if your AeroAPI plan and use case require date ranges beyond recent search.
 
-## Supabase Storage
-
-1. Create a Supabase project.
-2. Open Supabase SQL Editor.
-3. Run `supabase_schema.sql`.
-4. Set these environment variables:
-
-```text
-STORAGE_BACKEND=supabase
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-SUPABASE_TABLE=flightaware_delay_totals
-```
-
-Use the service role key only on the server. Do not expose it in browser code.
-
-## Deploy To Render + Supabase
-
-Recommended production setup:
-
-- Render Web Service for the API.
-- Supabase for durable storage.
-- Render Cron Job for scheduled scraping.
-- GitHub Actions for tests before deploy.
-
-### 1. Create Supabase Table
-
-1. Create or open your Supabase project.
-2. Open **SQL Editor**.
-3. Run the SQL in:
-
-```text
-Flightdelay/api/supabase_schema.sql
-```
-
-4. Copy these values from Supabase:
-
-```text
-SUPABASE_URL
-SUPABASE_SERVICE_ROLE_KEY
-```
-
-Use the service role key only in Render server-side environment variables. Do not put it in browser code.
-
-### 2. Deploy Render Blueprint
-
-1. Push this repository to GitHub.
-2. In Render, choose **New > Blueprint**.
-3. Select the repo.
-4. Use `Flightdelay/api/render.yaml`.
-5. Render will ask for secret values marked `sync: false`.
-6. Enter:
-
-```text
-SUPABASE_URL
-SUPABASE_SERVICE_ROLE_KEY
-```
-
-7. Deploy the Blueprint.
-
-The Blueprint creates:
-
-- `flightaware-delay-totals-api`: the web API.
-- `flightaware-delay-totals-scrape-scheduler`: an hourly cron job that scrapes only at `12:00 AM ET`, `5:00 AM ET`, and `9:00 PM ET`.
-
-### 3. Configure Render Auto Deploy
-
-Render supports auto-deploy on commit, or deploy only after checks pass. For this project, use **checksPass** if available in your Render service settings so GitHub Actions tests pass before deployment.
-
-The GitHub Actions workflow is:
-
-```text
-.github/workflows/flightaware-api-tests.yml
-```
-
-### Manual Render Web Service Setup
-
-1. In Render, choose **New > Web Service**.
-2. Root directory:
-
-```text
-Flightdelay/api
-```
-
-3. Build command:
+## Official AeroAPI Examples
 
 ```bash
-pip install -r requirements.txt
+curl \
+  -H "x-apikey: $FLIGHTAWARE_API_KEY" \
+  "https://aeroapi.flightaware.com/aeroapi/flights/search/advanced?query=%7Btrue%20cancelled%7D%20%7Borig_or_dest%20%7BKLAX%7D%7D&max_pages=4"
 ```
 
-4. Start command:
+```python
+import os
+import requests
 
-```bash
-uvicorn app:app --host 0.0.0.0 --port $PORT
+api_key = os.environ["FLIGHTAWARE_API_KEY"]
+url = "https://aeroapi.flightaware.com/aeroapi/flights/search/advanced"
+params = {"query": "{true cancelled} {orig_or_dest {KLAX}}", "max_pages": 4}
+response = requests.get(url, headers={"x-apikey": api_key}, params=params, timeout=30)
+response.raise_for_status()
+print(response.json())
 ```
 
-5. Set environment variables:
+Expected upstream shape, simplified:
+
+```json
+{
+  "flights": [
+    {
+      "ident": "AAL123",
+      "operator": "American Airlines",
+      "operator_iata": "AA",
+      "operator_icao": "AAL",
+      "origin": {"code_iata": "LAX", "code_icao": "KLAX", "city": "Los Angeles"},
+      "destination": {"code_iata": "DFW", "code_icao": "KDFW", "city": "Dallas-Fort Worth"},
+      "scheduled_out": "2026-05-07T13:00:00Z",
+      "scheduled_in": "2026-05-07T16:00:00Z",
+      "status": "Cancelled"
+    }
+  ]
+}
+```
+
+## API Spec
 
 ```text
-STORAGE_BACKEND=supabase
-ENABLE_SCHEDULER=false
-SCHEDULER_TIMEZONE=America/New_York
-SUPABASE_URL=your Supabase URL
-SUPABASE_SERVICE_ROLE_KEY=your Supabase service role key
-SUPABASE_TABLE=flightaware_delay_totals
-SCRAPE_SECRET=any long random secret
+GET /cancelled?airport=XXX&date=YYYY-MM-DD&airline=YYY&limit=50&format=json
 ```
 
-6. Create a Render Cron Job using the same repo and root directory:
+Parameters:
 
-```text
-Flightdelay/api
+- `airport`: optional IATA or ICAO, but ICAO is preferred by AeroAPI.
+- `airline`: optional IATA, ICAO, or name.
+- `date`: optional `YYYY-MM-DD`; defaults to today. Current implementation uses AeroAPI recent search and keeps this in the wrapper response for integration consistency.
+- `time_window`: optional label such as `00:00-23:59`.
+- `limit`: default `50`, max `500`.
+- `format`: `json` or `csv`.
+
+## JSON Examples
+
+Complete:
+
+```json
+{
+  "source": "FlightAware AeroAPI",
+  "mode": "official",
+  "query": {"airport": "KLAX", "airline": "AA", "date": "2026-05-07", "limit": 50},
+  "count": 1,
+  "flights": [
+    {
+      "flight_number": "AAL123",
+      "airline": {"name": "American Airlines", "iata": "AA", "icao": "AAL"},
+      "origin": {"airport_name": null, "iata": "LAX", "icao": "KLAX", "city": "Los Angeles"},
+      "destination": {"airport_name": null, "iata": "DFW", "icao": "KDFW", "city": "Dallas-Fort Worth"},
+      "scheduled_departure": "2026-05-07T13:00:00Z",
+      "scheduled_arrival": "2026-05-07T16:00:00Z",
+      "cancellation_time": null,
+      "cancellation_reason": "Cancelled",
+      "status_source": "FlightAware AeroAPI",
+      "scraped_at": "2026-05-07T04:00:00+00:00",
+      "raw_html_snippet": null
+    }
+  ]
+}
 ```
 
-7. Cron build command:
+Partial data:
 
-```bash
-pip install -r requirements.txt
+```json
+{
+  "count": 1,
+  "flights": [
+    {
+      "flight_number": "DAL456",
+      "airline": {"name": "Delta Air Lines", "iata": null, "icao": null},
+      "origin": {"airport_name": null, "iata": null, "icao": null, "city": null},
+      "destination": {"airport_name": null, "iata": null, "icao": null, "city": null},
+      "scheduled_departure": null,
+      "scheduled_arrival": null,
+      "cancellation_time": null,
+      "cancellation_reason": null,
+      "status_source": "FlightAware AeroAPI",
+      "scraped_at": "2026-05-07T04:00:00+00:00",
+      "raw_html_snippet": null
+    }
+  ]
+}
 ```
 
-8. Cron start command:
+Error:
 
-```bash
-python scripts/scrape_if_due.py
-```
-
-9. Cron schedule:
-
-```text
-0 * * * *
-```
-
-Render cron schedules use UTC. The hourly schedule is intentional; `scripts/scrape_if_due.py` checks New York time and exits without scraping unless the current ET hour is `00`, `05`, or `21`.
-
-## API Endpoints
-
-```text
-GET  /health
-GET  /flightaware/pages
-POST /flightaware/scrape
-GET  /flightaware/totals
-GET  /flightaware/totals?format=csv
-GET  /excel/flightaware-totals.csv
+```json
+{
+  "detail": "Missing FLIGHTAWARE_API_KEY environment variable"
+}
 ```
 
 ## Tests
 
 ```bash
 cd /Users/jonasodones/Desktop/src/Flightdelay/api
-.venv/bin/python -m pytest -q
+pytest -q
 ```
 
-## Important Notes
+Scenarios covered:
 
-- The service scrapes 4 pages per run.
-- Avoid running the scraper repeatedly in a tight loop.
-- FlightAware can change the page text or block automated requests; if that happens, the parser may need an update.
-- For production or commercial usage, confirm that your use of FlightAware page data is allowed by FlightAware's current terms.
+- Airport filter query.
+- Airline filter query.
+- CSV response path.
+
+## Docker
+
+```bash
+docker build -t cancelled-flights-api .
+docker run --rm -p 8000:8000 \
+  -e FLIGHTAWARE_API_KEY="$FLIGHTAWARE_API_KEY" \
+  -e DATA_MODE=official \
+  cancelled-flights-api
+```
+
+## Cron Sync Example
+
+Run every 10 minutes and save JSON:
+
+```cron
+*/10 * * * * curl -s "http://127.0.0.1:8000/cancelled?airport=KLAX&limit=100" > /var/tmp/cancelled_klax.json
+```
+
+For production, prefer a job queue or scheduler and Redis caching instead of in-process cache.
+
+## Legal Checklist
+
+- Confirm your AeroAPI plan permits your intended storage, redistribution, and commercial use.
+- Do not scrape `https://www.flightaware.com/live/cancelled` unless FlightAware gives written permission.
+- Keep request rates within AeroAPI tier limits.
+- Store API keys in environment variables or secret managers, never in source control.
+- Do not use this data for safety-critical aviation decisions unless your contract explicitly permits that use.

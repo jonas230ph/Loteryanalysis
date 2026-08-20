@@ -1,83 +1,66 @@
 import os
-from pathlib import Path
 
 import pytest
 import respx
 from fastapi.testclient import TestClient
 from httpx import Response
 
-os.environ["ENABLE_SCHEDULER"] = "false"
-os.environ["STORAGE_BACKEND"] = "sqlite"
-os.environ["SQLITE_DB_PATH"] = "/tmp/flightaware_test_scrapes.db"
+os.environ["FLIGHTAWARE_API_KEY"] = "test-key"
 
 from app import _cache, app  # noqa: E402
-
-
-SAMPLE_HTML = """
-<html>
-  <body>
-    Total delays within, into, or out of the United States today: 3,121
-    Total cancellations within, into, or out of the United States today: 93
-  </body>
-</html>
-"""
 
 
 @pytest.fixture()
 def client():
     _cache.clear()
-    db_path = Path(os.environ["SQLITE_DB_PATH"])
-    if db_path.exists():
-        db_path.unlink()
-
-    with TestClient(app) as test_client:
-        yield test_client
-
-    _cache.clear()
-    if db_path.exists():
-        db_path.unlink()
-
-
-def mock_flightaware_pages():
-    for path in ["/today", "/yesterday", "/minus2days", "/minus3days"]:
-        respx.get(f"https://www.flightaware.com/live/cancelled{path}").mock(return_value=Response(200, text=SAMPLE_HTML))
+    return TestClient(app)
 
 
 @respx.mock
-def test_scrape_stores_four_rows(client):
-    mock_flightaware_pages()
-
-    response = client.post("/flightaware/scrape")
-
+def test_cancelled_airport_filter(client):
+    respx.get("https://aeroapi.flightaware.com/aeroapi/flights/search/advanced").mock(
+        return_value=Response(
+            200,
+            json={
+                "flights": [
+                    {
+                        "ident": "AAL123",
+                        "operator": "American Airlines",
+                        "operator_iata": "AA",
+                        "operator_icao": "AAL",
+                        "origin": {"code_iata": "LAX", "code_icao": "KLAX", "city": "Los Angeles"},
+                        "destination": {"code_iata": "DFW", "code_icao": "KDFW", "city": "Dallas-Fort Worth"},
+                        "scheduled_out": "2026-05-07T13:00:00Z",
+                        "scheduled_in": "2026-05-07T16:00:00Z",
+                        "status": "Cancelled",
+                    }
+                ]
+            },
+        )
+    )
+    response = client.get("/cancelled?airport=KLAX&limit=1")
     assert response.status_code == 200
     body = response.json()
-    assert body["count"] == 4
-    assert body["rows"][0]["page_label"] == "today"
-    assert body["rows"][0]["total_delays_within_into_or_out_of_united_states"] == 3121
-    assert body["rows"][0]["total_cancellations_within_into_or_out_of_united_states"] == 93
+    assert body["count"] == 1
+    assert body["flights"][0]["flight_number"] == "AAL123"
 
 
 @respx.mock
-def test_latest_totals_returns_last_scrape(client):
-    mock_flightaware_pages()
-    client.post("/flightaware/scrape")
-
-    response = client.get("/flightaware/totals")
-
+def test_cancelled_airline_filter(client):
+    respx.get("https://aeroapi.flightaware.com/aeroapi/flights/search/advanced").mock(
+        return_value=Response(200, json={"flights": [{"ident": "DAL456", "operator": "Delta Air Lines"}]})
+    )
+    response = client.get("/cancelled?airline=Delta")
     assert response.status_code == 200
-    body = response.json()
-    assert body["count"] == 4
-    assert body["rows"][3]["page_label"] == "minus3days"
+    assert response.json()["count"] == 1
 
 
 @respx.mock
-def test_excel_csv_contains_cancellations(client):
-    mock_flightaware_pages()
-    client.post("/flightaware/scrape")
-
-    response = client.get("/excel/flightaware-totals.csv")
-
+def test_csv_response(client):
+    respx.get("https://aeroapi.flightaware.com/aeroapi/flights/search/advanced").mock(
+        return_value=Response(200, json={"flights": [{"ident": "AAL123", "operator": "American Airlines"}]})
+    )
+    response = client.get("/cancelled?airport=KLAX&format=csv")
     assert response.status_code == 200
-    assert response.text.startswith("\ufeffdate,")
-    assert "total_cancellations_within_into_or_out_of_united_states" in response.text
-    assert ",93," in response.text
+    assert response.text.startswith("flight_number,")
+    assert "AAL123" in response.text
