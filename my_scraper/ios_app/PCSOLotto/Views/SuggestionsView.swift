@@ -65,9 +65,44 @@ struct SuggestionsView: View {
 // Focused Ultra Lotto report using the moving four-week odd/even basis.
 struct UltraTrendsView: View {
     @ObservedObject var viewModel: LotteryViewModel
+    @State private var enteredNumbers = ["", "", ""]
+    @State private var checkResults: [String?] = [nil, nil, nil]
+    @State private var invalidInputs = [false, false, false]
+    @State private var matchedValues = [[Int](), [Int](), [Int]()]
 
     var body: some View {
         List {
+            Section("Check Latest Ultra Lotto Draw") {
+                if let latestUltraResult {
+                    LabeledContent("Latest draw", value: latestUltraResult.drawDate)
+                    Text(latestUltraResult.combinations).monospacedDigit()
+                    ForEach(enteredNumbers.indices, id: \.self) { slot in
+                        TextField("Enter 6 numbers", text: $enteredNumbers[slot])
+                            .keyboardType(.numbersAndPunctuation)
+                            .textInputAutocapitalization(.never)
+                        Button("Check Set \(slot + 1)") {
+                            checkNumbers(at: slot, against: latestUltraResult)
+                        }
+                        if let checkResult = checkResults[slot] {
+                            if invalidInputs[slot] {
+                                Text(checkResult).foregroundStyle(.red)
+                            } else if !matchedValues[slot].isEmpty {
+                                let matchedText = matchedValues[slot]
+                                    .map { String(format: "%02d", $0) }
+                                    .joined(separator: ", ")
+                                Text("Matched \(matchedValues[slot].count): ") +
+                                    Text(matchedText).bold().foregroundStyle(.red)
+                            } else {
+                                Text(checkResult)
+                            }
+                        }
+                    }
+                } else {
+                    Text("Latest Ultra Lotto result is loading.")
+                        .foregroundStyle(.secondary)
+                }
+            }
+
             if let leadingPattern = viewModel.ultraLottoTrends.oddEvenPatterns.first {
                 Section("Moving Four-Week Odd / Even Basis") {
                     LabeledContent("Leading pattern", value: leadingPattern.pattern)
@@ -134,5 +169,35 @@ struct UltraTrendsView: View {
         } message: {
             Text(viewModel.refreshMessage ?? "")
         }
+    }
+
+    private var latestUltraResult: LottoResult? {
+        viewModel.results.first { $0.lottoGame == "Ultra Lotto 6/58" }
+    }
+
+    private func checkNumbers(at slot: Int, against result: LottoResult) {
+        let submittedNumbers = numbers(from: enteredNumbers[slot])
+        guard submittedNumbers.count == 6,
+              Set(submittedNumbers).count == 6,
+              submittedNumbers.allSatisfy({ (1...58).contains($0) }) else {
+            invalidInputs[slot] = true
+            matchedValues[slot] = []
+            checkResults[slot] = "Enter six different numbers from 1 to 58."
+            return
+        }
+
+        let matchedNumbers = Set(submittedNumbers)
+            .intersection(Set(numbers(from: result.combinations)))
+            .sorted()
+        invalidInputs[slot] = false
+        matchedValues[slot] = matchedNumbers
+        let matchedText = matchedNumbers.map { String(format: "%02d", $0) }.joined(separator: ", ")
+        checkResults[slot] = matchedNumbers.isEmpty
+            ? "Matched 0 numbers against the \(result.drawDate) draw."
+            : "Matched \(matchedNumbers.count): \(matchedText)"
+    }
+
+    private func numbers(from value: String) -> [Int] {
+        value.split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) }
     }
 }

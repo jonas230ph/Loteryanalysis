@@ -30,3 +30,15 @@ class IOSRefreshSourceTests(unittest.TestCase):
         self.assertIn('Label("Ultra Trends", systemImage: "chart.bar.xaxis")', app_source)
         self.assertIn("Moving Four-Week Odd / Even Basis", view_source)
         self.assertIn("await viewModel.refreshHome()", view_source)
+
+    def test_ultra_trends_tab_checks_six_entered_numbers_against_latest_draw(self):
+        source = (PROJECT_ROOT / "ios_app/PCSOLotto/Views/SuggestionsView.swift").read_text(encoding="utf-8")
+
+        self.assertIn("Check Latest Ultra Lotto Draw", source)
+        self.assertIn("Enter 6 numbers", source)
+        self.assertIn("latestUltraResult", source)
+        self.assertIn("Set(submittedNumbers)", source)
+        self.assertIn("Matched", source)
+        self.assertIn('enteredNumbers = ["", "", ""]', source)
+        self.assertIn('Button("Check Set', source)
+        self.assertIn('Text(matchedText).bold().foregroundStyle(.red)', source)
