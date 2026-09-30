@@ -360,7 +360,11 @@ def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
         even_needed = rule["pick"] - odd_needed
         alternate_odd_counts = []
         if game == ULTRA_LOTTO_GAME and suggestions_per_game >= 5:
-            alternate_odd_counts = list(rng.permutation([odd_needed - 1, odd_needed + 1]))
+            alternate_odd_counts = list(rng.choice(
+                [count for count in range(1, rule["pick"]) if count != odd_needed],
+                size=2,
+                replace=False,
+            ))
 
         game_sum_stats = sum_df[sum_df["lotto_game"] == game].iloc[0]
         median_sum = float(game_sum_stats["median"])

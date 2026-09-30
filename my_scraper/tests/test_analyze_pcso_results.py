@@ -83,7 +83,7 @@ class SuggestionOddEvenTests(unittest.TestCase):
         self.assertEqual(len(alternate_suggestions), 2)
         self.assertSetEqual(
             set(alternate_suggestions["odd_even_pattern"]),
-            {"2 odd / 4 even", "4 odd / 2 even"},
+            {"4 odd / 2 even", "5 odd / 1 even"},
         )
 
 
