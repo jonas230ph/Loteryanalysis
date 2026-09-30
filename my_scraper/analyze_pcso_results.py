@@ -358,6 +358,9 @@ def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
         if not rule["replace"]:
             odd_needed = min(max(odd_needed, rule["pick"] - len(even_values)), len(odd_values))
         even_needed = rule["pick"] - odd_needed
+        alternate_odd_counts = []
+        if game == ULTRA_LOTTO_GAME and suggestions_per_game >= 5:
+            alternate_odd_counts = list(rng.permutation([odd_needed - 1, odd_needed + 1]))
 
         game_sum_stats = sum_df[sum_df["lotto_game"] == game].iloc[0]
         median_sum = float(game_sum_stats["median"])
@@ -370,9 +373,16 @@ def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
         while game_suggestion_count < suggestions_per_game and attempts < 20_000:
             attempts += 1
 
+            is_alternate_mix = game_suggestion_count >= suggestions_per_game - len(alternate_odd_counts)
+            selected_odd_count = (
+                alternate_odd_counts[game_suggestion_count - (suggestions_per_game - len(alternate_odd_counts))]
+                if is_alternate_mix
+                else odd_needed
+            )
+            selected_even_count = rule["pick"] - selected_odd_count
             chooser = weighted_choice_with_replacement if rule["replace"] else weighted_choice_without_replacement
-            odd_combo = chooser(rng, odd_values, odd_weights, odd_needed) if odd_needed else []
-            even_combo = chooser(rng, even_values, even_weights, even_needed) if even_needed else []
+            odd_combo = chooser(rng, odd_values, odd_weights, selected_odd_count) if selected_odd_count else []
+            even_combo = chooser(rng, even_values, even_weights, selected_even_count) if selected_even_count else []
             combo = np.concatenate([odd_combo, even_combo])
             if rule["ordered"]:
                 rng.shuffle(combo)
@@ -399,7 +409,11 @@ def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
                 "sum": combo_sum,
                 "odd_even_pattern": f"{odd_count} odd / {even_count} even",
                 "historical_frequency_score": int(score),
-                "basis": "weighted by historical frequency, six-week odd/even number frequency, and median-sum range",
+                "basis": (
+                    "weighted by historical frequency, randomized odd/even mix, and median-sum range"
+                    if is_alternate_mix
+                    else "weighted by historical frequency, six-week odd/even number frequency, and median-sum range"
+                ),
             })
             game_suggestion_count += 1
 

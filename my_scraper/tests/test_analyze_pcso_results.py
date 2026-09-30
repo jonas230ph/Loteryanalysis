@@ -60,6 +60,32 @@ class SuggestionOddEvenTests(unittest.TestCase):
         self.assertTrue((suggestions["odd_even_pattern"] == "4 odd / 2 even").all())
         self.assertIn("six-week odd/even number frequency", suggestions.iloc[0]["basis"])
 
+    def test_adds_two_alternate_odd_even_mixes_to_five_ultra_lotto_suggestions(self):
+        draws = pd.DataFrame({
+            "draw_date": pd.to_datetime(["2026-09-30"] * 6 + ["2026-10-01"] * 6),
+            "lotto_game": ["Ultra Lotto 6/58"] * 12,
+            "numbers": [[1, 3, 5, 7, 9, 11]] * 6 + [[2, 4, 6, 8, 10, 12]] * 6,
+            "odd_count": [6] * 6 + [0] * 6,
+            "even_count": [0] * 6 + [6] * 6,
+            "sum": [0] * 6 + [100] * 6,
+        })
+
+        suggestions = suggest_combinations(
+            draws,
+            frequency_analysis(draws),
+            sum_analysis(draws),
+            suggestions_per_game=5,
+            seed=7,
+        )
+
+        self.assertEqual(len(suggestions), 5)
+        alternate_suggestions = suggestions[suggestions["basis"].str.contains("randomized odd/even")]
+        self.assertEqual(len(alternate_suggestions), 2)
+        self.assertSetEqual(
+            set(alternate_suggestions["odd_even_pattern"]),
+            {"2 odd / 4 even", "4 odd / 2 even"},
+        )
+
 
 class UltraLottoTrendAnalysisTests(unittest.TestCase):
     def test_ranks_recent_number_trends_and_generates_pattern_matched_combinations(self):
