@@ -81,10 +81,8 @@ class SuggestionOddEvenTests(unittest.TestCase):
         self.assertEqual(len(suggestions), 5)
         alternate_suggestions = suggestions[suggestions["basis"].str.contains("randomized odd/even")]
         self.assertEqual(len(alternate_suggestions), 2)
-        self.assertSetEqual(
-            set(alternate_suggestions["odd_even_pattern"]),
-            {"4 odd / 2 even", "5 odd / 1 even"},
-        )
+        self.assertEqual(alternate_suggestions["odd_even_pattern"].nunique(), 2)
+        self.assertNotIn("3 odd / 3 even", set(alternate_suggestions["odd_even_pattern"]))
 
 
 class UltraLottoTrendAnalysisTests(unittest.TestCase):

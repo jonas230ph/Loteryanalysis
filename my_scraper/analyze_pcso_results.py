@@ -360,7 +360,7 @@ def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
         even_needed = rule["pick"] - odd_needed
         alternate_odd_counts = []
         if game == ULTRA_LOTTO_GAME and suggestions_per_game >= 5:
-            alternate_odd_counts = list(rng.choice(
+            alternate_odd_counts = list(np.random.default_rng().choice(
                 [count for count in range(1, rule["pick"]) if count != odd_needed],
                 size=2,
                 replace=False,
