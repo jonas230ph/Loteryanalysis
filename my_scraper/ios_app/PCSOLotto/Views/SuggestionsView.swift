@@ -13,7 +13,7 @@ struct SuggestionsView: View {
             }
 
             Section("Generated Combinations") {
-                ForEach(viewModel.suggestions) { suggestion in
+                ForEach(orderedSuggestions) { suggestion in
                     VStack(alignment: .leading, spacing: 6) {
                         Text(suggestion.lottoGame).font(.headline)
                         Text(suggestion.suggestedCombination).font(.title3).monospacedDigit()
@@ -58,6 +58,15 @@ struct SuggestionsView: View {
             Button("OK", role: .cancel) { viewModel.refreshMessage = nil }
         } message: {
             Text(viewModel.refreshMessage ?? "")
+        }
+    }
+
+    private var orderedSuggestions: [Suggestion] {
+        let ultraLotto = "Ultra Lotto 6/58"
+        return viewModel.suggestions.sorted { left, right in
+            if left.lottoGame == ultraLotto { return right.lottoGame != ultraLotto }
+            if right.lottoGame == ultraLotto { return false }
+            return left.lottoGame < right.lottoGame
         }
     }
 }
