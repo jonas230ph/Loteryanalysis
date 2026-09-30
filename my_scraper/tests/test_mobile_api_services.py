@@ -88,12 +88,14 @@ class AnalysisServiceTests(unittest.TestCase):
             outputs.mkdir()
             (outputs / "possible_winning_numbers_by_game.csv").write_text(
                 "lotto_game,suggested_combination,sum,odd_even_pattern,historical_frequency_score,basis\n"
+                "Lotto 6/42,01-02-03-04-05-06,21,3 odd / 3 even,90,weighted\n"
                 "Ultra Lotto 6/58,01-02-03-04-05-06,21,3 odd / 3 even,90,weighted\n",
                 encoding="utf-8",
             )
 
             suggestions = AnalysisService(root).list_suggestions()
 
+            self.assertEqual(suggestions[0]["lotto_game"], "Ultra Lotto 6/58")
             self.assertEqual(suggestions[0]["suggested_combination"], "01-02-03-04-05-06")
             self.assertEqual(suggestions[0]["historical_frequency_score"], 90)
 

@@ -4,6 +4,9 @@ import pandas as pd
 
 from analyze_pcso_results import (
     daily_odd_even_analysis,
+    frequency_analysis,
+    suggest_combinations,
+    sum_analysis,
     ultra_lotto_trend_analysis,
     ultra_lotto_trend_suggestions,
 )
@@ -29,6 +32,33 @@ class DailyOddEvenAnalysisTests(unittest.TestCase):
         self.assertEqual(lotto_row["total_numbers"], 7)
         self.assertEqual(lotto_row["odd_percentage"], 71.43)
         self.assertEqual(lotto_row["even_percentage"], 28.57)
+
+
+class SuggestionOddEvenTests(unittest.TestCase):
+    def test_uses_each_games_latest_six_weeks_of_odd_even_numbers_and_lists_ultra_first(self):
+        draws = pd.DataFrame({
+            "draw_date": pd.to_datetime([
+                "2026-08-01", "2026-09-01", "2026-09-15", "2026-10-01",
+                "2026-09-01", "2026-09-15", "2026-10-01",
+            ]),
+            "lotto_game": ["Ultra Lotto 6/58"] * 4 + ["Lotto 6/42"] * 3,
+            "numbers": [[1, 3, 5, 2, 4, 6]] + [[1, 3, 5, 7, 2, 4]] * 6,
+            "odd_count": [3, 4, 4, 4, 4, 4, 4],
+            "even_count": [3, 2, 2, 2, 2, 2, 2],
+            "sum": [21, 22, 22, 22, 22, 22, 22],
+        })
+
+        suggestions = suggest_combinations(
+            draws,
+            frequency_analysis(draws),
+            sum_analysis(draws),
+            suggestions_per_game=1,
+            seed=7,
+        )
+
+        self.assertEqual(suggestions.iloc[0]["lotto_game"], "Ultra Lotto 6/58")
+        self.assertTrue((suggestions["odd_even_pattern"] == "4 odd / 2 even").all())
+        self.assertIn("six-week odd/even number frequency", suggestions.iloc[0]["basis"])
 
 
 class UltraLottoTrendAnalysisTests(unittest.TestCase):

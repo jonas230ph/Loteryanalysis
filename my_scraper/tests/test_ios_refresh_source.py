@@ -42,3 +42,7 @@ class IOSRefreshSourceTests(unittest.TestCase):
         self.assertIn('enteredNumbers = ["", "", ""]', source)
         self.assertIn('Button("Check Set', source)
         self.assertIn('Text(matchedText).bold().foregroundStyle(.red)', source)
+        self.assertIn('@AppStorage("ultraLottoCheckerEntries")', source)
+        self.assertIn("restoreEnteredNumbers()", source)
+        self.assertIn("clearChecker(at: slot)", source)
+        self.assertIn("clearAllCheckers()", source)

@@ -65,6 +65,7 @@ struct SuggestionsView: View {
 // Focused Ultra Lotto report using the moving four-week odd/even basis.
 struct UltraTrendsView: View {
     @ObservedObject var viewModel: LotteryViewModel
+    @AppStorage("ultraLottoCheckerEntries") private var savedEnteredNumbers = ""
     @State private var enteredNumbers = ["", "", ""]
     @State private var checkResults: [String?] = [nil, nil, nil]
     @State private var invalidInputs = [false, false, false]
@@ -96,6 +97,16 @@ struct UltraTrendsView: View {
                                 Text(checkResult)
                             }
                         }
+                        Button(role: .destructive) {
+                            clearChecker(at: slot)
+                        } label: {
+                            Label("Clear Set \(slot + 1)", systemImage: "trash")
+                        }
+                    }
+                    Button(role: .destructive) {
+                        clearAllCheckers()
+                    } label: {
+                        Label("Clear All", systemImage: "trash")
                     }
                 } else {
                     Text("Latest Ultra Lotto result is loading.")
@@ -137,6 +148,12 @@ struct UltraTrendsView: View {
                     description: Text("Refresh after the latest analysis finishes publishing.")
                 )
             }
+        }
+        .onAppear {
+            restoreEnteredNumbers()
+        }
+        .onChange(of: enteredNumbers) { _, values in
+            savedEnteredNumbers = values.joined(separator: "\u{1F}")
         }
         .navigationTitle("Ultra Trends")
         .toolbar {
@@ -199,5 +216,25 @@ struct UltraTrendsView: View {
 
     private func numbers(from value: String) -> [Int] {
         value.split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) }
+    }
+
+    private func clearChecker(at slot: Int) {
+        enteredNumbers[slot] = ""
+        checkResults[slot] = nil
+        invalidInputs[slot] = false
+        matchedValues[slot] = []
+    }
+
+    private func clearAllCheckers() {
+        for slot in enteredNumbers.indices {
+            clearChecker(at: slot)
+        }
+    }
+
+    private func restoreEnteredNumbers() {
+        let savedValues = savedEnteredNumbers.components(separatedBy: "\u{1F}")
+        enteredNumbers = enteredNumbers.indices.map {
+            savedValues.indices.contains($0) ? savedValues[$0] : ""
+        }
     }
 }

@@ -53,7 +53,7 @@ class AnalysisService:
     def list_suggestions(self):
         # CSV values may be written as floats, so normalize them to whole-number
         # values before sending JSON to Swift.
-        return [
+        suggestions = [
             {
                 "lotto_game": row["lotto_game"],
                 "suggested_combination": row["suggested_combination"],
@@ -64,6 +64,7 @@ class AnalysisService:
             }
             for row in self._read_csv("possible_winning_numbers_by_game.csv")
         ]
+        return sorted(suggestions, key=lambda row: (row["lotto_game"] != "Ultra Lotto 6/58", row["lotto_game"]))
 
     def ultra_lotto_trend_data(self):
         """Return the focused Ultra Lotto reports used by the mobile Trends tab."""

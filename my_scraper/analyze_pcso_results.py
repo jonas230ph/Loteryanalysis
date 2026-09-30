@@ -325,26 +325,39 @@ def pattern_counts(pattern):
     return int(match.group(1)), int(match.group(2))
 
 
-def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, seed):
+def six_week_odd_even_number_counts(game_draws):
+    latest_draw_date = game_draws["draw_date"].max()
+    window_start = latest_draw_date - pd.Timedelta(days=41)
+    recent_draws = game_draws[game_draws["draw_date"] >= window_start]
+    return int(recent_draws["odd_count"].sum()), int(recent_draws["even_count"].sum())
+
+
+def suggest_combinations(df, freq_df, sum_df, suggestions_per_game, seed):
     rng = np.random.default_rng(seed)
     suggestions = []
 
-    for game in sorted(df["lotto_game"].unique()):
+    for game in sorted(df["lotto_game"].unique(), key=lambda value: (value != ULTRA_LOTTO_GAME, value)):
         rule = GAME_RULES.get(game)
         if not rule:
             continue
 
+        game_draws = df[df["lotto_game"] == game]
         game_freq = freq_df[freq_df["lotto_game"] == game].set_index("numbers")["frequency"]
         start = 0 if rule["replace"] else 1
         stop = rule["pool"] if rule["replace"] else rule["pool"] + 1
         values = np.arange(start, stop)
-        weights = np.array([game_freq.get(value, 0) + 1 for value in values], dtype=float)
-
-        game_patterns = pattern_df[pattern_df["lotto_game"] == game].sort_values("draws", ascending=False)
-        if game_patterns.empty:
+        odd_values = values[values % 2 == 1]
+        even_values = values[values % 2 == 0]
+        odd_weights = np.array([game_freq.get(value, 0) + 1 for value in odd_values], dtype=float)
+        even_weights = np.array([game_freq.get(value, 0) + 1 for value in even_values], dtype=float)
+        recent_odd_numbers, recent_even_numbers = six_week_odd_even_number_counts(game_draws)
+        recent_total_numbers = recent_odd_numbers + recent_even_numbers
+        if recent_total_numbers == 0:
             continue
-        preferred_pattern = game_patterns.iloc[0]["odd_even_pattern"]
-        preferred_counts = pattern_counts(preferred_pattern)
+        odd_needed = int(np.floor(recent_odd_numbers / recent_total_numbers * rule["pick"] + 0.5))
+        if not rule["replace"]:
+            odd_needed = min(max(odd_needed, rule["pick"] - len(even_values)), len(odd_values))
+        even_needed = rule["pick"] - odd_needed
 
         game_sum_stats = sum_df[sum_df["lotto_game"] == game].iloc[0]
         median_sum = float(game_sum_stats["median"])
@@ -357,21 +370,12 @@ def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, 
         while game_suggestion_count < suggestions_per_game and attempts < 20_000:
             attempts += 1
 
-            if rule["replace"]:
-                combo = weighted_choice_with_replacement(rng, values, weights, rule["pick"])
-            else:
-                if preferred_counts and 0 < preferred_counts[0] < rule["pick"]:
-                    odd_needed, even_needed = preferred_counts
-                    odd_values = values[values % 2 == 1]
-                    even_values = values[values % 2 == 0]
-                    odd_weights = np.array([game_freq.get(value, 0) + 1 for value in odd_values], dtype=float)
-                    even_weights = np.array([game_freq.get(value, 0) + 1 for value in even_values], dtype=float)
-                    combo = np.concatenate([
-                        weighted_choice_without_replacement(rng, odd_values, odd_weights, odd_needed),
-                        weighted_choice_without_replacement(rng, even_values, even_weights, even_needed),
-                    ])
-                else:
-                    combo = weighted_choice_without_replacement(rng, values, weights, rule["pick"])
+            chooser = weighted_choice_with_replacement if rule["replace"] else weighted_choice_without_replacement
+            odd_combo = chooser(rng, odd_values, odd_weights, odd_needed) if odd_needed else []
+            even_combo = chooser(rng, even_values, even_weights, even_needed) if even_needed else []
+            combo = np.concatenate([odd_combo, even_combo])
+            if rule["ordered"]:
+                rng.shuffle(combo)
 
             combo = [int(value) for value in combo]
             if not rule["ordered"]:
@@ -395,7 +399,7 @@ def suggest_combinations(df, freq_df, pattern_df, sum_df, suggestions_per_game, 
                 "sum": combo_sum,
                 "odd_even_pattern": f"{odd_count} odd / {even_count} even",
                 "historical_frequency_score": int(score),
-                "basis": "weighted by historical frequency, common odd/even pattern, and median-sum range",
+                "basis": "weighted by historical frequency, six-week odd/even number frequency, and median-sum range",
             })
             game_suggestion_count += 1
 
@@ -568,7 +572,6 @@ def main():
     suggestion_df = suggest_combinations(
         df,
         freq_df,
-        pattern_df,
         sum_df,
         suggestions_per_game=args.suggestions_per_game,
         seed=args.seed,
